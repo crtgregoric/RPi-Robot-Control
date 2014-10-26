@@ -11,9 +11,9 @@
 		6C32E05719FCFFEE00CF69D5 /* RPi_ControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E05619FCFFEE00CF69D5 /* RPi_ControlTests.m */; };
 		6C32E06319FD003A00CF69D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E06219FD003A00CF69D5 /* AppDelegate.m */; };
 		6C32E06819FD008900CF69D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C32E06519FD008900CF69D5 /* Images.xcassets */; };
-		6C32E06919FD008900CF69D5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C32E06619FD008900CF69D5 /* LaunchScreen.xib */; };
 		6C32E06A19FD008900CF69D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C32E06719FD008900CF69D5 /* Main.storyboard */; };
 		6C32E06F19FD015F00CF69D5 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E06E19FD015F00CF69D5 /* MainViewController.m */; };
+		6C32E07119FD050200CF69D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C32E07019FD050200CF69D5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +36,10 @@
 		6C32E06119FD003A00CF69D5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Global/AppDelegate.h; sourceTree = "<group>"; };
 		6C32E06219FD003A00CF69D5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Global/AppDelegate.m; sourceTree = "<group>"; };
 		6C32E06519FD008900CF69D5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
-		6C32E06619FD008900CF69D5 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = Resources/LaunchScreen.xib; sourceTree = "<group>"; };
 		6C32E06719FD008900CF69D5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Resources/Main.storyboard; sourceTree = "<group>"; };
 		6C32E06D19FD015F00CF69D5 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = ViewControllers/MainViewController.h; sourceTree = "<group>"; };
 		6C32E06E19FD015F00CF69D5 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ViewControllers/MainViewController.m; sourceTree = "<group>"; };
+		6C32E07019FD050200CF69D5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				6C32E06519FD008900CF69D5 /* Images.xcassets */,
-				6C32E06619FD008900CF69D5 /* LaunchScreen.xib */,
 				6C32E06719FD008900CF69D5 /* Main.storyboard */,
+				6C32E07019FD050200CF69D5 /* LaunchScreen.storyboard */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -232,7 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C32E06A19FD008900CF69D5 /* Main.storyboard in Resources */,
-				6C32E06919FD008900CF69D5 /* LaunchScreen.xib in Resources */,
+				6C32E07119FD050200CF69D5 /* LaunchScreen.storyboard in Resources */,
 				6C32E06819FD008900CF69D5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
