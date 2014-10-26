@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"%g", self.view.window.screen.nativeScale);;
 }
 
 @end

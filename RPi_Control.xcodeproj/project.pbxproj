@@ -14,6 +14,8 @@
 		6C32E06A19FD008900CF69D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C32E06719FD008900CF69D5 /* Main.storyboard */; };
 		6C32E06F19FD015F00CF69D5 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E06E19FD015F00CF69D5 /* MainViewController.m */; };
 		6C32E07119FD050200CF69D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C32E07019FD050200CF69D5 /* LaunchScreen.storyboard */; };
+		6C32E07419FD164000CF69D5 /* ControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E07319FD164000CF69D5 /* ControlView.m */; };
+		6C32E07619FD270600CF69D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C32E07519FD270600CF69D5 /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,9 @@
 		6C32E06D19FD015F00CF69D5 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = ViewControllers/MainViewController.h; sourceTree = "<group>"; };
 		6C32E06E19FD015F00CF69D5 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ViewControllers/MainViewController.m; sourceTree = "<group>"; };
 		6C32E07019FD050200CF69D5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6C32E07219FD164000CF69D5 /* ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlView.h; path = CustomViews/ControlView.h; sourceTree = "<group>"; };
+		6C32E07319FD164000CF69D5 /* ControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControlView.m; path = CustomViews/ControlView.m; sourceTree = "<group>"; };
+		6C32E07519FD270600CF69D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C32E07619FD270600CF69D5 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +72,7 @@
 				6C32E03919FCFFEE00CF69D5 /* RPi_Control */,
 				6C32E05319FCFFEE00CF69D5 /* RPi_ControlTests */,
 				6C32E03819FCFFEE00CF69D5 /* Products */,
+				6C32E07519FD270600CF69D5 /* CoreGraphics.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +154,8 @@
 		6C32E06C19FD00AE00CF69D5 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				6C32E07219FD164000CF69D5 /* ControlView.h */,
+				6C32E07319FD164000CF69D5 /* ControlView.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -251,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C32E07419FD164000CF69D5 /* ControlView.m in Sources */,
 				6C32E06319FD003A00CF69D5 /* AppDelegate.m in Sources */,
 				6C32E06F19FD015F00CF69D5 /* MainViewController.m in Sources */,
 				6C32E03D19FCFFEE00CF69D5 /* main.m in Sources */,

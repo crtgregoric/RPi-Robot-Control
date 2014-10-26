@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,7 +15,31 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ycA-Ay-VHi" customClass="ControlView">
+                                <rect key="frame" x="40" y="460" width="100" height="100"/>
+                                <color key="backgroundColor" red="0.1647058824" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="3Xp-Ri-uFd"/>
+                                    <constraint firstAttribute="height" constant="100" id="VKa-bR-EVf"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b46-7L-6mF">
+                                <rect key="frame" x="460" y="460" width="100" height="100"/>
+                                <color key="backgroundColor" red="0.1647058824" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="4d3-0a-ur7"/>
+                                    <constraint firstAttribute="height" constant="100" id="QxQ-DT-cQE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ycA-Ay-VHi" secondAttribute="bottom" constant="40" id="45Z-qn-vWm"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="b46-7L-6mF" secondAttribute="bottom" constant="40" id="oIo-hl-WS1"/>
+                            <constraint firstItem="ycA-Ay-VHi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="siL-bg-HxB"/>
+                            <constraint firstAttribute="trailing" secondItem="b46-7L-6mF" secondAttribute="trailing" constant="40" id="tSy-cK-kbr"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
