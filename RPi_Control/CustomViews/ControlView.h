@@ -22,6 +22,6 @@ IB_DESIGNABLE
 
 @property (nonatomic) IBInspectable CGFloat shapeBorderWidth;
 @property (nonatomic, strong) IBInspectable UIColor *shapeBorderColor;
-@property (nonatomic, strong) IBInspectable UIColor *shapeBackgroundColor;
+@property (nonatomic, strong) IBInspectable UIColor *shapeFillColor;
 
 @end
