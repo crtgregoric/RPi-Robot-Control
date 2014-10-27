@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C234A8F19FED6260083ACE4 /* ControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C234A8E19FED6260083ACE4 /* ControlView.m */; };
 		6C32E03D19FCFFEE00CF69D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E03C19FCFFEE00CF69D5 /* main.m */; };
 		6C32E05719FCFFEE00CF69D5 /* RPi_ControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E05619FCFFEE00CF69D5 /* RPi_ControlTests.m */; };
 		6C32E06319FD003A00CF69D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E06219FD003A00CF69D5 /* AppDelegate.m */; };
@@ -14,7 +15,6 @@
 		6C32E06A19FD008900CF69D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C32E06719FD008900CF69D5 /* Main.storyboard */; };
 		6C32E06F19FD015F00CF69D5 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E06E19FD015F00CF69D5 /* MainViewController.m */; };
 		6C32E07119FD050200CF69D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C32E07019FD050200CF69D5 /* LaunchScreen.storyboard */; };
-		6C32E07419FD164000CF69D5 /* ControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E07319FD164000CF69D5 /* ControlView.m */; };
 		6C32E07619FD270600CF69D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C32E07519FD270600CF69D5 /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C234A8D19FED6260083ACE4 /* ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlView.h; path = CustomViews/ControlView.h; sourceTree = "<group>"; };
+		6C234A8E19FED6260083ACE4 /* ControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControlView.m; path = CustomViews/ControlView.m; sourceTree = "<group>"; };
 		6C32E03719FCFFEE00CF69D5 /* RPi_Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPi_Control.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C32E03B19FCFFEE00CF69D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C32E03C19FCFFEE00CF69D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -42,8 +44,6 @@
 		6C32E06D19FD015F00CF69D5 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = ViewControllers/MainViewController.h; sourceTree = "<group>"; };
 		6C32E06E19FD015F00CF69D5 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ViewControllers/MainViewController.m; sourceTree = "<group>"; };
 		6C32E07019FD050200CF69D5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6C32E07219FD164000CF69D5 /* ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlView.h; path = CustomViews/ControlView.h; sourceTree = "<group>"; };
-		6C32E07319FD164000CF69D5 /* ControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControlView.m; path = CustomViews/ControlView.m; sourceTree = "<group>"; };
 		6C32E07519FD270600CF69D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -154,8 +154,8 @@
 		6C32E06C19FD00AE00CF69D5 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				6C32E07219FD164000CF69D5 /* ControlView.h */,
-				6C32E07319FD164000CF69D5 /* ControlView.m */,
+				6C234A8D19FED6260083ACE4 /* ControlView.h */,
+				6C234A8E19FED6260083ACE4 /* ControlView.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -260,7 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C32E07419FD164000CF69D5 /* ControlView.m in Sources */,
+				6C234A8F19FED6260083ACE4 /* ControlView.m in Sources */,
 				6C32E06319FD003A00CF69D5 /* AppDelegate.m in Sources */,
 				6C32E06F19FD015F00CF69D5 /* MainViewController.m in Sources */,
 				6C32E03D19FCFFEE00CF69D5 /* main.m in Sources */,
@@ -439,6 +439,7 @@
 				6C32E05C19FCFFEE00CF69D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6C32E05D19FCFFEE00CF69D5 /* Build configuration list for PBXNativeTarget "RPi_ControlTests" */ = {
 			isa = XCConfigurationList;
@@ -447,6 +448,7 @@
 				6C32E05F19FCFFEE00CF69D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,8 +7,12 @@
 //
 
 #import "MainViewController.h"
+#import "ControlView.h"
 
 @interface MainViewController ()
+
+@property (nonatomic, weak) IBOutlet ControlView *leftControlView;
+@property (nonatomic, weak) IBOutlet ControlView *rightControlView;
 
 @end
 
@@ -16,8 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"%g", self.view.window.screen.nativeScale);
 }
 
 @end

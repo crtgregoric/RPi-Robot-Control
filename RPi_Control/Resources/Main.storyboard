@@ -16,75 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OV7-cw-Uam" customClass="ControlView">
-                                <rect key="frame" x="40" y="460" width="100" height="100"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zrM-nB-hk9" customClass="ControlView">
+                                <rect key="frame" x="41" y="28" width="100" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="J4D-Wp-yQ8"/>
-                                    <constraint firstAttribute="height" constant="100" id="qgl-1x-q6k"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shapeBorderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVL-3h-TvW" customClass="ControlView">
-                                <rect key="frame" x="460" y="460" width="100" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="cKB-iF-bMs"/>
-                                    <constraint firstAttribute="width" constant="100" id="iZR-2U-2FR"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="shapeFillColor">
-                                        <color key="value" red="0.20000000000000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDr-ma-tfZ" customClass="ControlView">
-                                <rect key="frame" x="40" y="60" width="100" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="3rZ-ZW-Sp7"/>
-                                    <constraint firstAttribute="width" constant="100" id="huT-Yd-SNM"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="shapeFillColor">
-                                        <color key="value" red="0.78760834850000006" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S3Y-JI-h3I" customClass="ControlView">
-                                <rect key="frame" x="460" y="60" width="100" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Gzl-6e-eot"/>
-                                    <constraint firstAttribute="height" constant="100" id="yWj-Rz-aub"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="shapeFillColor">
-                                        <color key="value" red="0.1647058824" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="UDr-ma-tfZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="IfZ-Jt-2My"/>
-                            <constraint firstAttribute="trailing" secondItem="S3Y-JI-h3I" secondAttribute="trailing" constant="40" id="MpJ-Dx-gUm"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OV7-cw-Uam" secondAttribute="bottom" constant="40" id="TR3-J7-ewy"/>
-                            <constraint firstItem="S3Y-JI-h3I" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="Utb-gz-JeR"/>
-                            <constraint firstItem="OV7-cw-Uam" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="Xpt-ev-zhN"/>
-                            <constraint firstItem="UDr-ma-tfZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="eBA-tD-IT5"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pVL-3h-TvW" secondAttribute="bottom" constant="40" id="prW-SO-N9y"/>
-                            <constraint firstAttribute="trailing" secondItem="pVL-3h-TvW" secondAttribute="trailing" constant="40" id="yR2-LU-tMd"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-151" y="140"/>
+            <point key="canvasLocation" x="-182" y="114"/>
         </scene>
     </scenes>
 </document>

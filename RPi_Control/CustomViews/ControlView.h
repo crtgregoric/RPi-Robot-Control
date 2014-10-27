@@ -2,7 +2,7 @@
 //  ControlView.h
 //  RPi_Control
 //
-//  Created by Crt Gregoric on 26. 10. 14.
+//  Created by Crt Gregoric on 27. 10. 14.
 //  Copyright (c) 2014 akro-in. All rights reserved.
 //
 
@@ -18,10 +18,8 @@ IB_DESIGNABLE
 
 @property (nonatomic) ControlViewPosition position;
 
-@property (nonatomic, strong) CAShapeLayer *circleShape;
-
 @property (nonatomic) IBInspectable CGFloat shapeBorderWidth;
 @property (nonatomic, strong) IBInspectable UIColor *shapeBorderColor;
-@property (nonatomic, strong) IBInspectable UIColor *shapeFillColor;
+@property (nonatomic, strong) IBInspectable UIColor *shapeBackgroundColor;
 
 @end
