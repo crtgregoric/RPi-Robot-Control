@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6C234A8F19FED6260083ACE4 /* ControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C234A8E19FED6260083ACE4 /* ControlView.m */; };
+		6C234A9219FEF0110083ACE4 /* MathHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C234A9119FEF0110083ACE4 /* MathHelpers.m */; };
 		6C32E03D19FCFFEE00CF69D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E03C19FCFFEE00CF69D5 /* main.m */; };
 		6C32E05719FCFFEE00CF69D5 /* RPi_ControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E05619FCFFEE00CF69D5 /* RPi_ControlTests.m */; };
 		6C32E06319FD003A00CF69D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E06219FD003A00CF69D5 /* AppDelegate.m */; };
@@ -31,6 +32,8 @@
 /* Begin PBXFileReference section */
 		6C234A8D19FED6260083ACE4 /* ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlView.h; path = CustomViews/ControlView.h; sourceTree = "<group>"; };
 		6C234A8E19FED6260083ACE4 /* ControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControlView.m; path = CustomViews/ControlView.m; sourceTree = "<group>"; };
+		6C234A9019FEF0110083ACE4 /* MathHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MathHelpers.h; path = Global/MathHelpers.h; sourceTree = "<group>"; };
+		6C234A9119FEF0110083ACE4 /* MathHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MathHelpers.m; path = Global/MathHelpers.m; sourceTree = "<group>"; };
 		6C32E03719FCFFEE00CF69D5 /* RPi_Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPi_Control.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C32E03B19FCFFEE00CF69D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C32E03C19FCFFEE00CF69D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 			children = (
 				6C32E06119FD003A00CF69D5 /* AppDelegate.h */,
 				6C32E06219FD003A00CF69D5 /* AppDelegate.m */,
+				6C234A9019FEF0110083ACE4 /* MathHelpers.h */,
+				6C234A9119FEF0110083ACE4 /* MathHelpers.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 				6C32E06319FD003A00CF69D5 /* AppDelegate.m in Sources */,
 				6C32E06F19FD015F00CF69D5 /* MainViewController.m in Sources */,
 				6C32E03D19FCFFEE00CF69D5 /* main.m in Sources */,
+				6C234A9219FEF0110083ACE4 /* MathHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

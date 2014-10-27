@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "ControlView.h"
+#import "MathHelpers.h"
 
 @interface ControlView ()
 
@@ -49,27 +50,35 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)panGesture {
     CGPoint panLocation = [panGesture locationInView:self];
-    NSLog(@"%@", NSStringFromCGPoint(panLocation));
     
     switch ([panGesture state]) {
         case UIGestureRecognizerStateBegan:
-        {
-            CGPoint center = [self viewCenter];
-            CGFloat dx = center.x - panLocation.x;
-            CGFloat dy = center.y - panLocation.y;
-            self.offsetVector = CGVectorMake(dx, dy);
-        }
+            {
+                CGPoint center = [self viewCenter];
+                CGFloat dx = center.x - panLocation.x;
+                CGFloat dy = center.y - panLocation.y;
+                self.offsetVector = CGVectorMake(dx, dy);
+            }
             break;
         case UIGestureRecognizerStateChanged:
-        {
-            CGFloat x = panLocation.x + self.offsetVector.dx;
-            CGFloat y = panLocation.y + self.offsetVector.dy;
-            
-            CGPoint newCenter = CGPointMake(x, y);
-            if (CGRectContainsPoint(self.bounds, newCenter)) {
+            //
+            // This method changes for different control view position
+            //
+            {
+                CGFloat x = panLocation.x + self.offsetVector.dx;
+                CGFloat y = panLocation.y + self.offsetVector.dy;
+                CGPoint newCenter = CGPointMake(x, y);
+                
+                CGPoint circleCenter = [self viewCenter];
+                CGFloat circleRadius = [self viewRadius];
+                
+                if (![MathHelpers circleWithCenter:circleCenter andRadius:circleRadius containsPoint:newCenter]) {
+                    newCenter = [MathHelpers coordinatesForPoint:panLocation onCircleWithCenter:circleCenter andRadius:circleRadius];
+                    self.offsetVector = CGVectorMake(0, 0);
+                }
+                
                 self.circleView.center = newCenter;
             }
-        }
             break;
         case UIGestureRecognizerStateEnded:
             {
