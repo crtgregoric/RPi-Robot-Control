@@ -16,13 +16,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zrM-nB-hk9" customClass="ControlView">
-                                <rect key="frame" x="41" y="28" width="100" height="100"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Yo-Ls-udx" customClass="ControlView">
+                                <rect key="frame" x="460" y="460" width="100" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="MG7-GC-h9d"/>
+                                    <constraint firstAttribute="width" constant="100" id="aik-ie-kcd"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sz-o3-IVN" customClass="ControlView">
+                                <rect key="frame" x="40" y="460" width="100" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="RBg-6N-jA2"/>
+                                    <constraint firstAttribute="width" constant="100" id="YCA-fc-wt2"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1Sz-o3-IVN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="CNM-kU-Dlo"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3Yo-Ls-udx" secondAttribute="bottom" constant="40" id="ZbV-HI-CMy"/>
+                            <constraint firstAttribute="trailing" secondItem="1Sz-o3-IVN" secondAttribute="trailing" constant="463" id="bZ7-bU-U0l"/>
+                            <constraint firstAttribute="trailing" secondItem="3Yo-Ls-udx" secondAttribute="trailing" constant="40" id="dw2-AY-qMH"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1Sz-o3-IVN" secondAttribute="bottom" constant="40" id="rQ5-ls-N2k"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="bZ7-bU-U0l"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="leftControlView" destination="1Sz-o3-IVN" id="hvb-DX-cKq"/>
+                        <outlet property="rightControlView" destination="3Yo-Ls-udx" id="EXq-o7-HPW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
