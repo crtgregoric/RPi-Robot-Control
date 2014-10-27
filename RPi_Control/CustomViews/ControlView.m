@@ -61,10 +61,11 @@
             }
             break;
         case UIGestureRecognizerStateChanged:
-            //
-            // This method changes for different control view position
-            //
             {
+                //
+                // This method changes for different control view position
+                //
+
                 CGFloat x = panLocation.x + self.offsetVector.dx;
                 CGFloat y = panLocation.y + self.offsetVector.dy;
                 CGPoint newCenter = CGPointMake(x, y);
@@ -74,10 +75,11 @@
                 
                 if (![MathHelpers circleWithCenter:circleCenter andRadius:circleRadius containsPoint:newCenter]) {
                     newCenter = [MathHelpers coordinatesForPoint:panLocation onCircleWithCenter:circleCenter andRadius:circleRadius];
-                    self.offsetVector = CGVectorMake(0, 0);
+//                    self.offsetVector = CGVectorMake(0, 0);
                 }
                 
                 self.circleView.center = newCenter;
+                    
             }
             break;
         case UIGestureRecognizerStateEnded:
