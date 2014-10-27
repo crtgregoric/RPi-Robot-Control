@@ -20,6 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.leftControlView.position = ControlViewPositionLeft;
+    self.rightControlView.position = ControlViewPositionRight;
 }
 
 @end

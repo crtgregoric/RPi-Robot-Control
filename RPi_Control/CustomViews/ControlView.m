@@ -12,7 +12,8 @@
 
 @interface ControlView ()
 
-@property (nonatomic, strong) CAShapeLayer *circleShape;
+@property (nonatomic, strong) UIView *circleView;
+@property (nonatomic) CGVector offsetVector;
 
 @end
 
@@ -23,10 +24,16 @@
 }
 
 - (void)awakeFromNib {
+    [self setup];
     [self setupUI];
 }
 
 #pragma mark - Setup
+
+- (void)setup {
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
+    [self addGestureRecognizer:panGesture];
+}
 
 - (void)setupUI {
     self.layer.borderWidth = self.shapeBorderWidth;
@@ -35,7 +42,47 @@
     
     self.layer.cornerRadius = [self viewRadius];
     
-    [self.layer addSublayer:self.circleShape];
+    [self addSubview:self.circleView];
+}
+
+#pragma mark - Action methods
+
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)panGesture {
+    CGPoint panLocation = [panGesture locationInView:self];
+    NSLog(@"%@", NSStringFromCGPoint(panLocation));
+    
+    switch ([panGesture state]) {
+        case UIGestureRecognizerStateBegan:
+        {
+            CGPoint center = [self viewCenter];
+            CGFloat dx = center.x - panLocation.x;
+            CGFloat dy = center.y - panLocation.y;
+            self.offsetVector = CGVectorMake(dx, dy);
+        }
+            break;
+        case UIGestureRecognizerStateChanged:
+        {
+            CGFloat x = panLocation.x + self.offsetVector.dx;
+            CGFloat y = panLocation.y + self.offsetVector.dy;
+            
+            CGPoint newCenter = CGPointMake(x, y);
+            if (CGRectContainsPoint(self.bounds, newCenter)) {
+                self.circleView.center = newCenter;
+            }
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+            {
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.circleView.center = [self viewCenter];
+                }];
+                self.offsetVector = CGVectorMake(0, 0);
+            }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark - Helper methods
@@ -50,16 +97,14 @@
 
 #pragma mark - Getter methods
 
-- (CAShapeLayer *)circleShape {
-    if (!_circleShape) {
-        _circleShape = [CAShapeLayer layer];
-        
-        CGPoint center = [self viewCenter];
-        _circleShape.path = [UIBezierPath bezierPathWithArcCenter:center radius:self.circleRadius startAngle:0 endAngle:2*M_PI clockwise:YES].CGPath;
-        _circleShape.fillColor = self.circleColor.CGColor;
+- (UIView *)circleView {
+    if (!_circleView) {
+        _circleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.circleRadius*2, self.circleRadius*2)];
+        _circleView.center = [self viewCenter];
+        _circleView.layer.backgroundColor = self.circleColor.CGColor;
+        _circleView.layer.cornerRadius = self.circleRadius;
     }
-    
-    return _circleShape;
+    return _circleView;
 }
 
 - (CGFloat)shapeBorderWidth {
