@@ -13,8 +13,19 @@ typedef NS_ENUM(NSUInteger, ControlViewPosition) {
     ControlViewPositionLeft
 };
 
+@class ControlView;
+
+@protocol ControlViewDelegate <NSObject>
+
+@optional
+- (void)controlView:(ControlView *)controlView positionDidChange:(CGVector)position;
+
+@end
+
 IB_DESIGNABLE
 @interface ControlView : UIView
+
+@property (nonatomic, weak) id <ControlViewDelegate> delegate;
 
 @property (nonatomic) ControlViewPosition position;
 
