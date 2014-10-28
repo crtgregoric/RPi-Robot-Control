@@ -68,7 +68,7 @@
         if (self.position == ControlViewPositionRight) {
             if (![MathHelpers circleWithCenter:circleCenter andRadius:circleRadius containsPoint:newCenter]) {
                 newCenter = [MathHelpers coordinatesForPoint:newCenter onCircleWithCenter:circleCenter andRadius:circleRadius];
-                [self adjustOffsetVector];                
+                [self adjustOffsetVector];
             }
             
             self.circleView.center = newCenter;
@@ -78,6 +78,8 @@
             
             if ([MathHelpers circleWithCenter:circleCenter andRadius:circleRadius containsPoint:newCenter]) {
                 self.circleView.center = newCenter;
+            } else {
+                [self adjustOffsetVector];
             }
         }
         
