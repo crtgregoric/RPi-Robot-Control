@@ -74,12 +74,11 @@
                 CGFloat circleRadius = [self viewRadius];
                 
                 if (![MathHelpers circleWithCenter:circleCenter andRadius:circleRadius containsPoint:newCenter]) {
-                    newCenter = [MathHelpers coordinatesForPoint:panLocation onCircleWithCenter:circleCenter andRadius:circleRadius];
-//                    self.offsetVector = CGVectorMake(0, 0);
+                    newCenter = [MathHelpers coordinatesForPoint:newCenter onCircleWithCenter:circleCenter andRadius:circleRadius];
+                    [self adjustOffsetVector];
                 }
-                
+
                 self.circleView.center = newCenter;
-                    
             }
             break;
         case UIGestureRecognizerStateEnded:
@@ -87,10 +86,8 @@
                 [UIView animateWithDuration:0.3 animations:^{
                     self.circleView.center = [self viewCenter];
                 }];
-                self.offsetVector = CGVectorMake(0, 0);
             }
             break;
-            
         default:
             break;
     }
@@ -104,6 +101,25 @@
 
 - (CGPoint)viewCenter {
     return CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+}
+
+- (void)adjustOffsetVector {
+    CGFloat dx = self.offsetVector.dx;
+    CGFloat dy = self.offsetVector.dy;
+    
+    if (dx > 0) {
+        dx -= 0.75;
+    } else if (dx < 0) {
+        dx += 0.75;
+    }
+    
+    if (dy > 0) {
+        dy -= 0.75;
+    } else if (dy < 0) {
+        dy += 0.75;
+    }
+
+    self.offsetVector = CGVectorMake(dx, dy);
 }
 
 #pragma mark - Getter methods

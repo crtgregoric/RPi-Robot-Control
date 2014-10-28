@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, ControlViewPosition) {
-    ControlViewPositionLeft,
-    ControlViewPositionRight
+    ControlViewPositionRight,
+    ControlViewPositionLeft
 };
 
 IB_DESIGNABLE
