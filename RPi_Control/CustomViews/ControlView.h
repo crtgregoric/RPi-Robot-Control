@@ -17,8 +17,11 @@ typedef NS_ENUM(NSUInteger, ControlViewPosition) {
 
 @protocol ControlViewDelegate <NSObject>
 
+- (void)controlView:(ControlView *)controlView isChangingPositionTo:(CGPoint)position;
+
 @optional
-- (void)controlView:(ControlView *)controlView positionDidChange:(CGVector)position;
+- (void)controlViewWillBeginChangingPosition:(ControlView *)contrlView;
+- (void)controlViewDidEndChangigPosition:(ControlView *)controlView;
 
 @end
 

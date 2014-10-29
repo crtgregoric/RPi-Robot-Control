@@ -57,6 +57,10 @@
         CGFloat dy = center.y - panLocation.y;
         self.offsetVector = CGVectorMake(dx, dy);
         
+        if ([self.delegate respondsToSelector:@selector(controlViewWillBeginChangingPosition:)]) {
+            [self.delegate controlViewWillBeginChangingPosition:self];
+        }
+        
     } else if (panGesture.state == UIGestureRecognizerStateChanged) {
         CGFloat x = panLocation.x + self.offsetVector.dx;
         CGFloat y = panLocation.y + self.offsetVector.dy;
@@ -69,17 +73,20 @@
             if (![MathHelpers circleWithCenter:circleCenter andRadius:circleRadius containsPoint:newCenter]) {
                 newCenter = [MathHelpers coordinatesForPoint:newCenter onCircleWithCenter:circleCenter andRadius:circleRadius];
                 [self adjustOffsetVector];
+                
             }
             
-            self.circleView.center = newCenter;
+            [self repositionCircleViewToPosition:newCenter];
             
         } else if (self.position == ControlViewPositionLeft) {
             newCenter = CGPointMake(circleCenter.x, newCenter.y);
             
             if ([MathHelpers circleWithCenter:circleCenter andRadius:circleRadius containsPoint:newCenter]) {
-                self.circleView.center = newCenter;
+                [self repositionCircleViewToPosition:newCenter];
+                
             } else {
                 [self adjustOffsetVector];
+                
             }
         }
         
@@ -87,6 +94,10 @@
         [UIView animateWithDuration:0.3 animations:^{
             self.circleView.center = [self viewCenter];
         }];
+        
+        if ([self.delegate respondsToSelector:@selector(controlViewDidEndChangigPosition:)]) {
+            [self.delegate controlViewDidEndChangigPosition:self];
+        }
     }
 }
 
@@ -117,6 +128,15 @@
     }
 
     self.offsetVector = CGVectorMake(dx, dy);
+}
+
+- (void)repositionCircleViewToPosition:(CGPoint)position {
+    self.circleView.center = position;
+    
+    if ([self.delegate respondsToSelector:@selector(controlView:isChangingPositionTo:)]) {
+        CGPoint center = [self viewCenter];
+        [self.delegate controlView:self isChangingPositionTo:CGPointMake(position.x - center.x, position.y - center.y)];
+    }
 }
 
 #pragma mark - Getter methods
