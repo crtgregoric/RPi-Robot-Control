@@ -9,7 +9,7 @@
 #import "MainViewController.h"
 #import "ControlView.h"
 
-@interface MainViewController ()
+@interface MainViewController () <ControlViewDelegate>
 
 @property (nonatomic, weak) IBOutlet ControlView *leftControlView;
 @property (nonatomic, weak) IBOutlet ControlView *rightControlView;
@@ -22,7 +22,20 @@
     [super viewDidLoad];
     
     self.leftControlView.position = ControlViewPositionLeft;
+    self.leftControlView.delegate = self;
+
     self.rightControlView.position = ControlViewPositionRight;
+    self.rightControlView.delegate = self;
+}
+
+#pragma mark - ControlViewDelegate
+
+- (void)controlView:(ControlView *)controlView isChangingPositionTo:(CGPoint)position {
+    NSLog(@"position x: %.1f, y: %.1f", position.x, position.y);
+}
+
+- (void)controlViewDidEndChangigPosition:(ControlView *)controlView {
+    NSLog(@"position change ended");
 }
 
 @end

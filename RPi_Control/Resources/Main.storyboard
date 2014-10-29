@@ -16,34 +16,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Yo-Ls-udx" customClass="ControlView">
-                                <rect key="frame" x="460" y="460" width="100" height="100"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sz-o3-IVN" customClass="ControlView">
+                                <rect key="frame" x="40" y="410" width="150" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="MG7-GC-h9d"/>
-                                    <constraint firstAttribute="width" constant="100" id="aik-ie-kcd"/>
+                                    <constraint firstAttribute="height" constant="150" id="30Q-gw-H8P"/>
+                                    <constraint firstAttribute="width" constant="150" id="cba-yj-eh0"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Yo-Ls-udx" customClass="ControlView">
+                                <rect key="frame" x="410" y="410" width="150" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="circleRadius">
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sz-o3-IVN" customClass="ControlView">
-                                <rect key="frame" x="40" y="460" width="100" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="RBg-6N-jA2"/>
-                                    <constraint firstAttribute="width" constant="100" id="YCA-fc-wt2"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1Sz-o3-IVN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="CNM-kU-Dlo"/>
+                            <constraint firstItem="1Sz-o3-IVN" firstAttribute="width" secondItem="3Yo-Ls-udx" secondAttribute="width" id="G0O-ie-QDi"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3Yo-Ls-udx" secondAttribute="bottom" constant="40" id="ZbV-HI-CMy"/>
                             <constraint firstAttribute="trailing" secondItem="1Sz-o3-IVN" secondAttribute="trailing" constant="463" id="bZ7-bU-U0l"/>
                             <constraint firstAttribute="trailing" secondItem="3Yo-Ls-udx" secondAttribute="trailing" constant="40" id="dw2-AY-qMH"/>
+                            <constraint firstItem="1Sz-o3-IVN" firstAttribute="height" secondItem="3Yo-Ls-udx" secondAttribute="height" id="q3A-B3-EEk"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1Sz-o3-IVN" secondAttribute="bottom" constant="40" id="rQ5-ls-N2k"/>
                         </constraints>
                         <variation key="default">

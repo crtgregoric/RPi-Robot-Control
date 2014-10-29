@@ -29,7 +29,7 @@
     [self setupUI];
 }
 
-#pragma mark - Setup
+#pragma mark - Setup methods
 
 - (void)setup {
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
@@ -135,7 +135,10 @@
     
     if ([self.delegate respondsToSelector:@selector(controlView:isChangingPositionTo:)]) {
         CGPoint center = [self viewCenter];
-        [self.delegate controlView:self isChangingPositionTo:CGPointMake(position.x - center.x, position.y - center.y)];
+        CGFloat x = (position.x - center.x) / (self.frame.size.width/2);
+        CGFloat y = (center.y - position.y) / (self.frame.size.height/2);
+        
+        [self.delegate controlView:self isChangingPositionTo:CGPointMake(x, y)];
     }
 }
 
