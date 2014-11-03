@@ -7,9 +7,12 @@
 //
 
 #import "MainViewController.h"
+#import "CommunicationHelper.h"
 #import "ControlView.h"
 
 @interface MainViewController () <ControlViewDelegate>
+
+@property (nonatomic, strong) CommunicationHelper *communicationHelper;
 
 @property (nonatomic, weak) IBOutlet ControlView *leftControlView;
 @property (nonatomic, weak) IBOutlet ControlView *rightControlView;
@@ -20,6 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.communicationHelper = [[CommunicationHelper alloc] init];
     
     self.leftControlView.position = ControlViewPositionLeft;
     self.leftControlView.delegate = self;

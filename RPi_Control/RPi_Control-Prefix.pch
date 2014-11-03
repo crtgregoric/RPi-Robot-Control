@@ -1,0 +1,13 @@
+//
+//  RPi_Control-Prefix.pch
+//  RPi_Control
+//
+//  Created by Crt Gregoric on 3. 11. 14.
+//  Copyright (c) 2014 akro-in. All rights reserved.
+//
+
+#ifdef __OBJC__
+
+#import "Globals.h"
+
+#endif
