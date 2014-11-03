@@ -53,29 +53,31 @@
 #pragma mark - NSStreamDelegate
 
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)eventCode {
+    NSString *streamString = stream == self.inputStream ? @"inputStream" : @"outputStream";
+    
     switch (eventCode) {
         case NSStreamEventOpenCompleted:
-            NSLog(@"NSStreamEventOpenCompleted");
+            NSLog(@"%@: NSStreamEventOpenCompleted", streamString);
             break;
             
         case NSStreamEventHasBytesAvailable:
-            NSLog(@"NSStreamEventHasBytesAvailable");
+            NSLog(@"%@: NSStreamEventHasBytesAvailable", streamString);
             break;
             
         case NSStreamEventHasSpaceAvailable:
-            NSLog(@"NSStreamEventHasSpaceAvailable");
+            NSLog(@"%@: NSStreamEventHasSpaceAvailable", streamString);
             break;
         
         case NSStreamEventEndEncountered:
-            NSLog(@"NSStreamEventEndEncountered");
+            NSLog(@"%@: NSStreamEventEndEncountered", streamString);
             break;
             
         case NSStreamEventErrorOccurred:
-            NSLog(@"NSStreamEventErrorOccurred");
+            NSLog(@"%@: NSStreamEventErrorOccurred", streamString);
             break;
             
         case NSStreamEventNone:
-            NSLog(@"NSStreamEventNone");
+            NSLog(@"%@: NSStreamEventNone", streamString);
             break;
     }
 }
