@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6C234A8F19FED6260083ACE4 /* ControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C234A8E19FED6260083ACE4 /* ControlView.m */; };
 		6C234A9219FEF0110083ACE4 /* MathHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C234A9119FEF0110083ACE4 /* MathHelpers.m */; };
+		6C31B2431A082797008B936C /* CommunicationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C31B2421A082797008B936C /* CommunicationHelper.m */; };
 		6C32E03D19FCFFEE00CF69D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E03C19FCFFEE00CF69D5 /* main.m */; };
 		6C32E05719FCFFEE00CF69D5 /* RPi_ControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E05619FCFFEE00CF69D5 /* RPi_ControlTests.m */; };
 		6C32E06319FD003A00CF69D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E06219FD003A00CF69D5 /* AppDelegate.m */; };
@@ -32,8 +33,12 @@
 /* Begin PBXFileReference section */
 		6C234A8D19FED6260083ACE4 /* ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlView.h; path = CustomViews/ControlView.h; sourceTree = "<group>"; };
 		6C234A8E19FED6260083ACE4 /* ControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControlView.m; path = CustomViews/ControlView.m; sourceTree = "<group>"; };
-		6C234A9019FEF0110083ACE4 /* MathHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MathHelpers.h; path = Global/MathHelpers.h; sourceTree = "<group>"; };
-		6C234A9119FEF0110083ACE4 /* MathHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MathHelpers.m; path = Global/MathHelpers.m; sourceTree = "<group>"; };
+		6C234A9019FEF0110083ACE4 /* MathHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MathHelpers.h; path = Library/MathHelpers.h; sourceTree = "<group>"; };
+		6C234A9119FEF0110083ACE4 /* MathHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MathHelpers.m; path = Library/MathHelpers.m; sourceTree = "<group>"; };
+		6C31B2411A082797008B936C /* CommunicationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommunicationHelper.h; path = Library/CommunicationHelper.h; sourceTree = "<group>"; };
+		6C31B2421A082797008B936C /* CommunicationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommunicationHelper.m; path = Library/CommunicationHelper.m; sourceTree = "<group>"; };
+		6C31B2441A0831E6008B936C /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = Global/Globals.h; sourceTree = "<group>"; };
+		6C31B2471A08328A008B936C /* RPi_Control-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RPi_Control-Prefix.pch"; sourceTree = "<group>"; };
 		6C32E03719FCFFEE00CF69D5 /* RPi_Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPi_Control.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C32E03B19FCFFEE00CF69D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C32E03C19FCFFEE00CF69D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -69,6 +74,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C31B2401A082751008B936C /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				6C234A9019FEF0110083ACE4 /* MathHelpers.h */,
+				6C234A9119FEF0110083ACE4 /* MathHelpers.m */,
+				6C31B2411A082797008B936C /* CommunicationHelper.h */,
+				6C31B2421A082797008B936C /* CommunicationHelper.m */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
 		6C32E02E19FCFFEE00CF69D5 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				6C32E06019FD002300CF69D5 /* Global */,
+				6C31B2401A082751008B936C /* Library */,
 				6C32E06419FD007300CF69D5 /* Resources */,
 				6C32E06B19FD009E00CF69D5 /* ViewControllers */,
 				6C32E06C19FD00AE00CF69D5 /* CustomViews */,
@@ -105,6 +122,7 @@
 			children = (
 				6C32E03B19FCFFEE00CF69D5 /* Info.plist */,
 				6C32E03C19FCFFEE00CF69D5 /* main.m */,
+				6C31B2471A08328A008B936C /* RPi_Control-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -131,8 +149,7 @@
 			children = (
 				6C32E06119FD003A00CF69D5 /* AppDelegate.h */,
 				6C32E06219FD003A00CF69D5 /* AppDelegate.m */,
-				6C234A9019FEF0110083ACE4 /* MathHelpers.h */,
-				6C234A9119FEF0110083ACE4 /* MathHelpers.m */,
+				6C31B2441A0831E6008B936C /* Globals.h */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -269,6 +286,7 @@
 				6C32E06319FD003A00CF69D5 /* AppDelegate.m in Sources */,
 				6C32E06F19FD015F00CF69D5 /* MainViewController.m in Sources */,
 				6C32E03D19FCFFEE00CF69D5 /* main.m in Sources */,
+				6C31B2431A082797008B936C /* CommunicationHelper.m in Sources */,
 				6C234A9219FEF0110083ACE4 /* MathHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,6 +333,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "RPi_Control/RPi_Control-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -356,6 +375,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREFIX_HEADER = "RPi_Control/RPi_Control-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
