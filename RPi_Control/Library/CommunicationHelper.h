@@ -25,7 +25,6 @@
 
 @property (nonatomic, weak) id<CommunicationHelperDelegate> delegate;
 
-- (void)connect;
 - (void)sendMessage:(NSString *)message;
 
 @end

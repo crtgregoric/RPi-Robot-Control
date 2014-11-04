@@ -40,12 +40,20 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wy0-p9-lF8">
+                                <rect key="frame" x="298" y="565" width="4" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1Sz-o3-IVN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="CNM-kU-Dlo"/>
                             <constraint firstItem="1Sz-o3-IVN" firstAttribute="width" secondItem="3Yo-Ls-udx" secondAttribute="width" id="G0O-ie-QDi"/>
                             <constraint firstAttribute="centerX" secondItem="S7z-Jk-5pq" secondAttribute="centerX" id="UA4-zU-oDT"/>
+                            <constraint firstAttribute="centerX" secondItem="wy0-p9-lF8" secondAttribute="centerX" id="Y5V-NI-h0c"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wy0-p9-lF8" secondAttribute="bottom" constant="20" id="ZQ4-6H-a06"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3Yo-Ls-udx" secondAttribute="bottom" constant="40" id="ZbV-HI-CMy"/>
                             <constraint firstAttribute="trailing" secondItem="1Sz-o3-IVN" secondAttribute="trailing" constant="463" id="bZ7-bU-U0l"/>
                             <constraint firstAttribute="trailing" secondItem="3Yo-Ls-udx" secondAttribute="trailing" constant="40" id="dw2-AY-qMH"/>
@@ -60,6 +68,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="errorLabel" destination="wy0-p9-lF8" id="gEr-9r-PfK"/>
                         <outlet property="leftControlView" destination="1Sz-o3-IVN" id="hvb-DX-cKq"/>
                         <outlet property="rightControlView" destination="3Yo-Ls-udx" id="EXq-o7-HPW"/>
                         <outlet property="statusLabel" destination="S7z-Jk-5pq" id="dIF-4A-pb5"/>

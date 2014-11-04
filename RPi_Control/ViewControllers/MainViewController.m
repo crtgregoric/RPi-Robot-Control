@@ -20,6 +20,7 @@
 #pragma mark - IBOutlets
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 
 @end
 
@@ -31,7 +32,6 @@
     [super viewDidLoad];
     
     self.communicationHelper = [[CommunicationHelper alloc] init];
-    [self.communicationHelper connect];
     self.communicationHelper.delegate = self;
     
     self.leftControlView.position = ControlViewPositionLeft;
@@ -58,7 +58,16 @@
 }
 
 - (void)communicationHelper:(CommunicationHelper *)helper encounteredAnError:(NSError *)error {
-    NSLog(@"communication error: %@", error.localizedDescription);
+    self.errorLabel.alpha = 1.0;
+    self.errorLabel.text = [NSString stringWithFormat:@"Error: %@", error.localizedDescription];
+
+    [UIView animateWithDuration:0.5 delay:4.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.errorLabel.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            self.errorLabel.text = @" ";
+        }
+    }];
 }
 
 #pragma mark - ControlViewDelegate

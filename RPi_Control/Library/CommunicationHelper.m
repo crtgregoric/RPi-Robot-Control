@@ -13,6 +13,8 @@
 @property (nonatomic, strong) NSInputStream *inputStream;
 @property (nonatomic, strong) NSOutputStream *outputStream;
 
+@property (nonatomic, strong) NSTimer *reconnectTimer;
+
 @end
 
 @implementation CommunicationHelper
@@ -23,26 +25,55 @@
     self = [super init];
     
     if (self) {
-        CFReadStreamRef readStream;
-        CFWriteStreamRef writeStream;
-        CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)kHostName, kPortNumber, &readStream, &writeStream);
-        
-        self.inputStream = (__bridge NSInputStream *)readStream;
-        self.outputStream = (__bridge NSOutputStream *)writeStream;
-        
-        self.inputStream.delegate = self;
-        self.outputStream.delegate = self;
-        
-        [self.inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        [self.outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        [self connect];
     }
     
     return self;
 }
 
 - (void)connect {
+    NSLog(@"CommunicationHelper: connect");
+    
+    [self closeStream:self.inputStream];
+    [self closeStream:self.outputStream];
+    
+    CFReadStreamRef readStream;
+    CFWriteStreamRef writeStream;
+    CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)kHostName, kPortNumber, &readStream, &writeStream);
+    
+    self.inputStream = (__bridge NSInputStream *)readStream;
+    self.outputStream = (__bridge NSOutputStream *)writeStream;
+    
+    [self.inputStream setProperty:(id)kCFBooleanTrue forKey:(NSString *)kCFStreamPropertyShouldCloseNativeSocket];
+    [self.outputStream setProperty:(id)kCFBooleanTrue forKey:(NSString *)kCFStreamPropertyShouldCloseNativeSocket];
+    
+    self.inputStream.delegate = self;
+    self.outputStream.delegate = self;
+
+    [self.inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [self.outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+
     [self.inputStream open];
     [self.outputStream open];
+}
+
+#pragma mark - Helper methods
+
+- (void)startReconnecting {
+    if (!self.reconnectTimer.isValid) {
+        self.reconnectTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(connect) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)stopReconnectiong {
+    [self.reconnectTimer invalidate];
+}
+
+- (void)closeStream:(NSStream *)stream {
+    [stream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    stream.delegate = nil;
+    [stream close];
+    stream = nil;
 }
 
 #pragma mark - Sending and receiving messages
@@ -68,7 +99,7 @@
     NSString *message = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     
     if (message) {
-//        NSLog(@"received message: %@", message);
+//        NSLog(@"CommunicationHelper: received message: %@", message);
         
         if ([self.delegate respondsToSelector:@selector(communicationHelper:didReceiveMessage:)]) {
             [self.delegate communicationHelper:self didReceiveMessage:message];
@@ -83,16 +114,18 @@
     
     switch (eventCode) {
         case NSStreamEventOpenCompleted:
-//            NSLog(@"%@: NSStreamEventOpenCompleted", streamString);
+//            NSLog(@"CommunicationHelper: %@: NSStreamEventOpenCompleted", streamString);
             
             if ([self.delegate respondsToSelector:@selector(communicationHelperDidConnectToHost:)]) {
                 [self.delegate communicationHelperDidConnectToHost:self];
             }
             
+            [self stopReconnectiong];
+            
             break;
             
         case NSStreamEventHasBytesAvailable:
-//            NSLog(@"%@: NSStreamEventHasBytesAvailable", streamString);
+//            NSLog(@"CommunicationHelper: %@: NSStreamEventHasBytesAvailable", streamString);
             
             if ([stream isKindOfClass:[NSInputStream class]]) {
                 [self receiveDataFromInputStream:(NSInputStream *)stream];
@@ -101,32 +134,35 @@
             break;
             
         case NSStreamEventHasSpaceAvailable:
-//            NSLog(@"%@: NSStreamEventHasSpaceAvailable", streamString);
+//            NSLog(@"CommunicationHelper: %@: NSStreamEventHasSpaceAvailable", streamString);
             break;
         
         case NSStreamEventEndEncountered:
-//            NSLog(@"%@: NSStreamEventEndEncountered", streamString);
-            
-            [stream close];
-            [stream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+//            NSLog(@"CommunicationHelper: %@: NSStreamEventEndEncountered", streamString);
+
+            [self closeStream:stream];
             
             if ([self.delegate respondsToSelector:@selector(communicationHelperDidDisconnectFromHost:)]) {
                 [self.delegate communicationHelperDidDisconnectFromHost:self];
             }
             
+            [self startReconnecting];
+            
             break;
             
         case NSStreamEventErrorOccurred:
-//            NSLog(@"%@: NSStreamEventErrorOccurred: %@", streamString, stream.streamError);
+            NSLog(@"CommunicationHelper: %@: NSStreamEventErrorOccurred: %@", streamString, stream.streamError.localizedDescription);
             
             if ([self.delegate respondsToSelector:@selector(communicationHelper:encounteredAnError:)]) {
                 [self.delegate communicationHelper:self encounteredAnError:stream.streamError];
             }
             
+            [self startReconnecting];
+            
             break;
             
         case NSStreamEventNone:
-            NSLog(@"%@: NSStreamEventNone", streamString);
+            NSLog(@"CommunicationHelper: %@: NSStreamEventNone", streamString);
             break;
     }
 }
