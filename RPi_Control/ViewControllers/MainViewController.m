@@ -37,7 +37,7 @@
 
 - (void)controlView:(ControlView *)controlView isChangingPositionTo:(CGPoint)position {
     NSLog(@"position x: %.1f, y: %.1f", position.x, position.y);
-    [self.communicationHelper sendCommand:[NSString stringWithFormat:@"0 %d", (int)(position.y * 100)]];
+    [self.communicationHelper sendMessage:[NSString stringWithFormat:@"0 %d", (int)(position.y * 100)]];
 }
 
 - (void)controlViewDidEndChangigPosition:(ControlView *)controlView {

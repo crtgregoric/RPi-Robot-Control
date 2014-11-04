@@ -8,9 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+@class CommunicationHelper;
+
+@protocol CommunicationHelperDelegate <NSObject>
+
+- (void)communicationHelperDidConnectToHost:(CommunicationHelper *)helper;
+- (void)communicationHelperDidDisconnectFromHost:(CommunicationHelper *)helper;
+- (void)communicationHelper:(CommunicationHelper *)helper encounteredAnError:(NSError *)error;
+
+- (void)communicationHelper:(CommunicationHelper *)helper didReceiveMessage:(NSString *)message;
+
+@end
+
 @interface CommunicationHelper : NSObject
 
+@property (nonatomic, weak) id<CommunicationHelperDelegate> delegate;
 
-- (void)sendCommand:(NSString *)command;
+- (void)sendMessage:(NSString *)message;
 
 @end

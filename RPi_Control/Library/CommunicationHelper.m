@@ -43,37 +43,84 @@
     return self;
 }
 
-#pragma mark - Sending data
+#pragma mark - Sending and receiving messages
 
-- (void)sendCommand:(NSString *)command {
-    NSData *data = [[NSData alloc] initWithData:[command dataUsingEncoding:NSASCIIStringEncoding]];
+- (void)sendMessage:(NSString *)message {
+    NSData *data = [[NSData alloc] initWithData:[message dataUsingEncoding:NSASCIIStringEncoding]];
     [self.outputStream write:data.bytes maxLength:data.length];
+}
+
+- (void)receiveDataFromInputStream:(NSInputStream *)stream {
+    uint8_t buffer[256];
+    NSInteger len = 0;
+    NSMutableData *data = [[NSMutableData alloc] init];
+    
+    while (stream.hasBytesAvailable) {
+        len = [stream read:buffer maxLength:sizeof(buffer)];
+        
+        if (len) {
+            [data appendBytes:(const void *)buffer length:len];
+        }
+    }
+    
+    NSString *message = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+    
+    if (message) {
+        NSLog(@"received message: %@", message);
+        
+        if ([self.delegate respondsToSelector:@selector(communicationHelper:didReceiveMessage:)]) {
+            [self.delegate communicationHelper:self didReceiveMessage:message];
+        }
+    }
 }
 
 #pragma mark - NSStreamDelegate
 
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)eventCode {
-    NSString *streamString = stream == self.inputStream ? @"inputStream" : @"outputStream";
+    NSString *streamString = [stream isKindOfClass:[NSInputStream class]] ? @"inputStream" : @"outputStream";
     
     switch (eventCode) {
         case NSStreamEventOpenCompleted:
             NSLog(@"%@: NSStreamEventOpenCompleted", streamString);
+            
+            if ([self.delegate respondsToSelector:@selector(communicationHelperDidConnectToHost:)]) {
+                [self.delegate communicationHelperDidConnectToHost:self];
+            }
+            
             break;
             
         case NSStreamEventHasBytesAvailable:
-            NSLog(@"%@: NSStreamEventHasBytesAvailable", streamString);
+//            NSLog(@"%@: NSStreamEventHasBytesAvailable", streamString);
+            
+            if ([stream isKindOfClass:[NSInputStream class]]) {
+                [self receiveDataFromInputStream:(NSInputStream *)stream];
+            }
+            
             break;
             
         case NSStreamEventHasSpaceAvailable:
-            NSLog(@"%@: NSStreamEventHasSpaceAvailable", streamString);
+//            NSLog(@"%@: NSStreamEventHasSpaceAvailable", streamString);
             break;
         
         case NSStreamEventEndEncountered:
             NSLog(@"%@: NSStreamEventEndEncountered", streamString);
+            
+            [stream close];
+            [stream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+            
+            if ([self.delegate respondsToSelector:@selector(communicationHelperDidDisconnectFromHost:)]) {
+                [self.delegate communicationHelperDidDisconnectFromHost:self];
+            }
+            
             break;
             
         case NSStreamEventErrorOccurred:
-            NSLog(@"%@: NSStreamEventErrorOccurred", streamString);
+            NSLog(@"%@: NSStreamEventErrorOccurred: %@", streamString, stream.streamError);
+            
+            if ([self.delegate respondsToSelector:@selector(communicationHelper:encounteredAnError:)]) {
+                [self.delegate communicationHelper:self encounteredAnError:stream.streamError];
+            }
+            
             break;
             
         case NSStreamEventNone:
