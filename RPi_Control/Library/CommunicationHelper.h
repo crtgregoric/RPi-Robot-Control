@@ -12,6 +12,7 @@
 
 @protocol CommunicationHelperDelegate <NSObject>
 
+@optional
 - (void)communicationHelperDidConnectToHost:(CommunicationHelper *)helper;
 - (void)communicationHelperDidDisconnectFromHost:(CommunicationHelper *)helper;
 - (void)communicationHelper:(CommunicationHelper *)helper encounteredAnError:(NSError *)error;
@@ -24,6 +25,7 @@
 
 @property (nonatomic, weak) id<CommunicationHelperDelegate> delegate;
 
+- (void)connect;
 - (void)sendMessage:(NSString *)message;
 
 @end

@@ -35,12 +35,14 @@
         
         [self.inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         [self.outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        
-        [self.inputStream open];
-        [self.outputStream open];
     }
     
     return self;
+}
+
+- (void)connect {
+    [self.inputStream open];
+    [self.outputStream open];
 }
 
 #pragma mark - Sending and receiving messages
@@ -66,7 +68,7 @@
     NSString *message = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     
     if (message) {
-        NSLog(@"received message: %@", message);
+//        NSLog(@"received message: %@", message);
         
         if ([self.delegate respondsToSelector:@selector(communicationHelper:didReceiveMessage:)]) {
             [self.delegate communicationHelper:self didReceiveMessage:message];
@@ -81,7 +83,7 @@
     
     switch (eventCode) {
         case NSStreamEventOpenCompleted:
-            NSLog(@"%@: NSStreamEventOpenCompleted", streamString);
+//            NSLog(@"%@: NSStreamEventOpenCompleted", streamString);
             
             if ([self.delegate respondsToSelector:@selector(communicationHelperDidConnectToHost:)]) {
                 [self.delegate communicationHelperDidConnectToHost:self];
@@ -103,7 +105,7 @@
             break;
         
         case NSStreamEventEndEncountered:
-            NSLog(@"%@: NSStreamEventEndEncountered", streamString);
+//            NSLog(@"%@: NSStreamEventEndEncountered", streamString);
             
             [stream close];
             [stream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -115,7 +117,7 @@
             break;
             
         case NSStreamEventErrorOccurred:
-            NSLog(@"%@: NSStreamEventErrorOccurred: %@", streamString, stream.streamError);
+//            NSLog(@"%@: NSStreamEventErrorOccurred: %@", streamString, stream.streamError);
             
             if ([self.delegate respondsToSelector:@selector(communicationHelper:encounteredAnError:)]) {
                 [self.delegate communicationHelper:self encounteredAnError:stream.streamError];
