@@ -8,6 +8,9 @@
 
 #import "CommunicationHelper.h"
 
+static const NSUInteger kReconnectInterval = 5;
+static const NSUInteger kBufferSize = 256;
+
 @interface CommunicationHelper () <NSStreamDelegate>
 
 @property (nonatomic, strong) NSInputStream *inputStream;
@@ -61,7 +64,7 @@
 
 - (void)startReconnecting {
     if (!self.reconnectTimer.isValid) {
-        self.reconnectTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(connect) userInfo:nil repeats:YES];
+        self.reconnectTimer = [NSTimer scheduledTimerWithTimeInterval:kReconnectInterval target:self selector:@selector(connect) userInfo:nil repeats:YES];
     }
 }
 
@@ -84,7 +87,7 @@
 }
 
 - (void)receiveDataFromInputStream:(NSInputStream *)stream {
-    uint8_t buffer[256];
+    uint8_t buffer[kBufferSize];
     NSInteger len = 0;
     NSMutableData *data = [[NSMutableData alloc] init];
     

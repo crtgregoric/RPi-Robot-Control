@@ -115,16 +115,18 @@
     CGFloat dx = self.offsetVector.dx;
     CGFloat dy = self.offsetVector.dy;
     
+    CGFloat delta = 0.75;
+    
     if (dx > 0) {
-        dx -= 0.75;
+        dx -= delta;
     } else if (dx < 0) {
-        dx += 0.75;
+        dx += delta;
     }
     
     if (dy > 0) {
-        dy -= 0.75;
+        dy -= delta;
     } else if (dy < 0) {
-        dy += 0.75;
+        dy += delta;
     }
 
     self.offsetVector = CGVectorMake(dx, dy);
