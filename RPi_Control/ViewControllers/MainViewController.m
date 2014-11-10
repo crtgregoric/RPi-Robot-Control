@@ -73,8 +73,17 @@
 #pragma mark - ControlViewDelegate
 
 - (void)controlView:(ControlView *)controlView isChangingPositionTo:(CGPoint)position {
-    NSLog(@"position x: %.1f, y: %.1f", position.x, position.y);
-    [self.communicationHelper sendMessage:[NSString stringWithFormat:@"0 %d", (int)(position.y * 100)]];
+    int px = position.x * 100;
+    int py = position.y * 100;
+
+    NSString *test = [NSString stringWithFormat:@"%d %d %d|", (int)controlView.position, px, py];
+    [self.communicationHelper sendMessage:[NSString stringWithFormat:@"%@%@%@", test, test, test]];
+    
+    NSString *message = [NSString stringWithFormat:@"%d %d %d|", (int)controlView.position, px, py];
+//    [self.communicationHelper sendMessage:message];
+    
+    NSString *positionString = (controlView.position == ControlViewPositionLeft) ? @"left" : @"right";
+    NSLog(@"%@: sent: %@", positionString, message);
 }
 
 - (void)controlViewDidEndChangigPosition:(ControlView *)controlView {

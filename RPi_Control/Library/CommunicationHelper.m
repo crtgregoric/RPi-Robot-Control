@@ -94,7 +94,7 @@ static const NSUInteger kBufferSize = 256;
     while (stream.hasBytesAvailable) {
         len = [stream read:buffer maxLength:sizeof(buffer)];
         
-        if (len) {
+        if (len > 0) {
             [data appendBytes:(const void *)buffer length:len];
         }
     }
