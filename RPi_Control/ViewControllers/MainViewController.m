@@ -76,11 +76,8 @@
     int px = position.x * 100;
     int py = position.y * 100;
 
-    NSString *test = [NSString stringWithFormat:@"%d %d %d|", (int)controlView.position, px, py];
-    [self.communicationHelper sendMessage:[NSString stringWithFormat:@"%@%@%@", test, test, test]];
-    
     NSString *message = [NSString stringWithFormat:@"%d %d %d|", (int)controlView.position, px, py];
-//    [self.communicationHelper sendMessage:message];
+    [self.communicationHelper sendMessage:message];
     
     NSString *positionString = (controlView.position == ControlViewPositionLeft) ? @"left" : @"right";
     NSLog(@"%@: sent: %@", positionString, message);
