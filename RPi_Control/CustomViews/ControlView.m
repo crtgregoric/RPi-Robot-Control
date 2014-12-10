@@ -90,10 +90,12 @@
             }
         }
         
-    } else if (panGesture.state == UIGestureRecognizerStateEnded && self.position == ControlViewPositionRight) {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.circleView.center = [self viewCenter];
-        }];
+    } else if (panGesture.state == UIGestureRecognizerStateEnded) {
+        if (self.position == ControlViewPositionRight) {
+            [UIView animateWithDuration:0.3 animations:^{
+                self.circleView.center = [self viewCenter];
+            }];
+        }
         
         if ([self.delegate respondsToSelector:@selector(controlViewDidEndChangigPosition:)]) {
             [self.delegate controlViewDidEndChangigPosition:self];

@@ -37,13 +37,19 @@
     self.communicationHelper = [[CommunicationHelper alloc] init];
     self.communicationHelper.delegate = self;
     
-    self.streamHelper = [[StreamHelper alloc] initWithVideoFeedView:self.streamFeedView];
-    
     self.leftControlView.position = ControlViewPositionLeft;
     self.leftControlView.delegate = self;
 
     self.rightControlView.position = ControlViewPositionRight;
     self.rightControlView.delegate = self;
+}
+
+#pragma mark - Helper methods
+
+- (NSString *)prepareMessageForControlView:(ControlView *)controlView andPosition:(CGPoint)position {
+    int px = position.x * 100;
+    int py = position.y * 100;
+    return [NSString stringWithFormat:@"%d %d %d|", (int)controlView.position, px, py];
 }
 
 #pragma mark - CommunicationHelperDelegate
@@ -55,6 +61,10 @@
 - (void)communicationHelperDidConnectToHost:(CommunicationHelper *)helper {
     self.statusLabel.text = @"Connected";
     self.statusLabel.backgroundColor = [UIColor greenColor];
+    
+    if (!self.streamHelper) {
+        self.streamHelper = [[StreamHelper alloc] initWithVideoFeedView:self.streamFeedView];
+    }
 }
 
 - (void)communicationHelperDidDisconnectFromHost:(CommunicationHelper *)helper {
@@ -78,10 +88,7 @@
 #pragma mark - ControlViewDelegate
 
 - (void)controlView:(ControlView *)controlView isChangingPositionTo:(CGPoint)position {
-    int px = position.x * 100;
-    int py = position.y * 100;
-
-    NSString *message = [NSString stringWithFormat:@"%d %d %d|", (int)controlView.position, px, py];
+    NSString *message = [self prepareMessageForControlView:controlView andPosition:position];
     [self.communicationHelper sendMessage:message];
     
     NSString *positionString = (controlView.position == ControlViewPositionLeft) ? @"left" : @"right";
@@ -90,6 +97,10 @@
 
 - (void)controlViewDidEndChangigPosition:(ControlView *)controlView {
     NSLog(@"position change ended");
+    if (controlView.position == ControlViewPositionRight) {
+        NSString *message = [self prepareMessageForControlView:controlView andPosition:CGPointZero];
+        [self.communicationHelper sendMessage:message];
+    }
 }
 
 @end

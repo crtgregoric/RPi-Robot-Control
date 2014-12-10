@@ -13,7 +13,7 @@
 #ifdef MAC_SERVER
 static const NSString *kHostName = @"cromartie.local";
 #else
-static const NSString *kHostName = @"raspberrypi.local";
+static const NSString *kHostName = @"rpi.local";
 #endif
 static const NSInteger kPortNumber = 1234;
 static const NSInteger kStreamPortNumber = 5000;
