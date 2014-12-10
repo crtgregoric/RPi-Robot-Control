@@ -152,7 +152,7 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, StreamHelper *self)
         return;
     }
     
-    const char *host = [kHostName UTF8String];
+    const char *host = kHostName.UTF8String;
     int port = (int)kStreamPortNumber;
     
     GstElement *src = gst_bin_get_by_name(GST_BIN(pipeline), "src");

@@ -102,10 +102,10 @@
 		6C32E02E19FCFFEE00CF69D5 = {
 			isa = PBXGroup;
 			children = (
-				6C1A82E21A38573700D416E4 /* GStreamer.framework */,
 				6C32E03919FCFFEE00CF69D5 /* RPi_Control */,
 				6C32E05319FCFFEE00CF69D5 /* RPi_ControlTests */,
 				6C32E03819FCFFEE00CF69D5 /* Products */,
+				6C1A82E21A38573700D416E4 /* GStreamer.framework */,
 				6C32E07519FD270600CF69D5 /* CoreGraphics.framework */,
 			);
 			sourceTree = "<group>";
