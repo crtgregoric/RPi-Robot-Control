@@ -37,6 +37,8 @@
     self.communicationHelper = [[CommunicationHelper alloc] init];
     self.communicationHelper.delegate = self;
     
+    self.streamHelper = [[StreamHelper alloc] initWithVideoFeedView:self.streamFeedView];
+    
     self.leftControlView.position = ControlViewPositionLeft;
     self.leftControlView.delegate = self;
 
