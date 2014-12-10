@@ -8,16 +8,19 @@
 
 #import "MainViewController.h"
 #import "CommunicationHelper.h"
+#import "StreamHelper.h"
 #import "ControlView.h"
+#import "VideoFeedView.h"
 
 @interface MainViewController () <CommunicationHelperDelegate, ControlViewDelegate>
 
 @property (nonatomic, strong) CommunicationHelper *communicationHelper;
+@property (nonatomic, strong) StreamHelper *streamHelper;
 
-@property (nonatomic, weak) IBOutlet ControlView *leftControlView;
-@property (nonatomic, weak) IBOutlet ControlView *rightControlView;
+@property (weak, nonatomic)  IBOutlet VideoFeedView *streamFeedView;
 
-#pragma mark - IBOutlets
+@property (weak, nonatomic) IBOutlet ControlView *leftControlView;
+@property (weak, nonatomic) IBOutlet ControlView *rightControlView;
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;

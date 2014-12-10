@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C1A82DB1A38522200D416E4 /* VideoFeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1A82DA1A38522200D416E4 /* VideoFeedView.m */; };
+		6C1A82E11A38544900D416E4 /* StreamHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1A82E01A38544900D416E4 /* StreamHelper.m */; };
 		6C234A8F19FED6260083ACE4 /* ControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C234A8E19FED6260083ACE4 /* ControlView.m */; };
 		6C234A9219FEF0110083ACE4 /* MathHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C234A9119FEF0110083ACE4 /* MathHelpers.m */; };
 		6C31B2431A082797008B936C /* CommunicationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C31B2421A082797008B936C /* CommunicationHelper.m */; };
@@ -31,6 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C1A82D91A38522200D416E4 /* VideoFeedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoFeedView.h; path = CustomViews/VideoFeedView.h; sourceTree = "<group>"; };
+		6C1A82DA1A38522200D416E4 /* VideoFeedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideoFeedView.m; path = CustomViews/VideoFeedView.m; sourceTree = "<group>"; };
+		6C1A82DF1A38544900D416E4 /* StreamHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamHelper.h; path = Library/StreamHelper.h; sourceTree = "<group>"; };
+		6C1A82E01A38544900D416E4 /* StreamHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamHelper.m; path = Library/StreamHelper.m; sourceTree = "<group>"; };
 		6C234A8D19FED6260083ACE4 /* ControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlView.h; path = CustomViews/ControlView.h; sourceTree = "<group>"; };
 		6C234A8E19FED6260083ACE4 /* ControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControlView.m; path = CustomViews/ControlView.m; sourceTree = "<group>"; };
 		6C234A9019FEF0110083ACE4 /* MathHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MathHelpers.h; path = Library/MathHelpers.h; sourceTree = "<group>"; };
@@ -81,6 +87,8 @@
 				6C234A9119FEF0110083ACE4 /* MathHelpers.m */,
 				6C31B2411A082797008B936C /* CommunicationHelper.h */,
 				6C31B2421A082797008B936C /* CommunicationHelper.m */,
+				6C1A82DF1A38544900D416E4 /* StreamHelper.h */,
+				6C1A82E01A38544900D416E4 /* StreamHelper.m */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -178,6 +186,8 @@
 			children = (
 				6C234A8D19FED6260083ACE4 /* ControlView.h */,
 				6C234A8E19FED6260083ACE4 /* ControlView.m */,
+				6C1A82D91A38522200D416E4 /* VideoFeedView.h */,
+				6C1A82DA1A38522200D416E4 /* VideoFeedView.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -283,9 +293,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C234A8F19FED6260083ACE4 /* ControlView.m in Sources */,
+				6C1A82DB1A38522200D416E4 /* VideoFeedView.m in Sources */,
 				6C32E06319FD003A00CF69D5 /* AppDelegate.m in Sources */,
 				6C32E06F19FD015F00CF69D5 /* MainViewController.m in Sources */,
 				6C32E03D19FCFFEE00CF69D5 /* main.m in Sources */,
+				6C1A82E11A38544900D416E4 /* StreamHelper.m in Sources */,
 				6C31B2431A082797008B936C /* CommunicationHelper.m in Sources */,
 				6C234A9219FEF0110083ACE4 /* MathHelpers.m in Sources */,
 			);
