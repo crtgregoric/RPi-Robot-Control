@@ -13,4 +13,6 @@
 
 - (instancetype)initWithVideoFeedView:(UIView *)videoFeedView;
 
+- (void)stop;
+
 @end

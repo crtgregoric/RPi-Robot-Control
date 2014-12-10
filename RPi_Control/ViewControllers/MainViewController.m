@@ -70,6 +70,11 @@
 - (void)communicationHelperDidDisconnectFromHost:(CommunicationHelper *)helper {
     self.statusLabel.text = @"Not connected";
     self.statusLabel.backgroundColor = [UIColor redColor];
+    
+    if (self.streamHelper) {
+        [self.streamHelper stop];
+        self.streamHelper = nil;
+    }
 }
 
 - (void)communicationHelper:(CommunicationHelper *)helper encounteredAnError:(NSError *)error {

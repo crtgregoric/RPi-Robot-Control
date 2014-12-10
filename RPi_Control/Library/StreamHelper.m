@@ -50,12 +50,7 @@ GST_DEBUG_CATEGORY_STATIC (debug_category);
 
 -(void) dealloc
 {
-    if (pipeline) {
-        GST_DEBUG("Setting the pipeline to NULL");
-        gst_element_set_state(pipeline, GST_STATE_NULL);
-        gst_object_unref(pipeline);
-        pipeline = NULL;
-    }
+    [self stop];
 }
 
 -(void) play
@@ -69,6 +64,16 @@ GST_DEBUG_CATEGORY_STATIC (debug_category);
 {
     if(gst_element_set_state(pipeline, GST_STATE_PAUSED) == GST_STATE_CHANGE_FAILURE) {
         [self setUIMessage:"Failed to set pipeline to paused"];
+    }
+}
+
+-(void) stop
+{
+    if (pipeline) {
+        GST_DEBUG("Setting the pipeline to NULL");
+        gst_element_set_state(pipeline, GST_STATE_NULL);
+        gst_object_unref(pipeline);
+        pipeline = NULL;
     }
 }
 
