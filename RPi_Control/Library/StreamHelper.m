@@ -24,15 +24,15 @@ GST_DEBUG_CATEGORY_STATIC (debug_category);
     UIView *ui_video_view;
 }
 
-- (instancetype)initWithVideoFeedView:(UIView *)videoFeedView {
-    
+- (instancetype)initWithVideoFeedView:(UIView *)videoFeedView delegate:(id <StreamHelperDelegate>)delegate {
+
 #ifdef MAC_SERVER
     return nil;
 #else
     self = [super init];
     
     if (self) {
-        //        self->ui_delegate = uiDelegate;
+        self->ui_delegate = delegate;
         self->ui_video_view = videoFeedView;
         
         GST_DEBUG_CATEGORY_INIT (debug_category, "rpi-control", 0, "ios-rpi-control");
@@ -87,6 +87,13 @@ GST_DEBUG_CATEGORY_STATIC (debug_category);
 //    }
 }
 
+- (void)notifyDelegate
+{
+    if ([ui_delegate respondsToSelector:@selector(streamerHelperDidStartDisplayingVideo:)]) {
+        [ui_delegate streamerHelperDidStartDisplayingVideo:self];
+    }
+}
+
 /* Retrieve errors from the bus and show them on the UI */
 static void error_cb (GstBus *bus, GstMessage *msg, StreamHelper *self)
 {
@@ -111,7 +118,13 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, StreamHelper *self)
     gst_message_parse_state_changed (msg, &old_state, &new_state, &pending_state);
     /* Only pay attention to messages coming from the pipeline, not its children */
     if (GST_MESSAGE_SRC (msg) == GST_OBJECT (self->pipeline)) {
-        gchar *message = g_strdup_printf("State changed to %s", gst_element_state_get_name(new_state));
+        const gchar *state = gst_element_state_get_name(new_state);
+        gchar *message = g_strdup_printf("State changed to %s", state);
+        
+        if ((strcmp("PLAYING", state) == 0)) {
+            [self notifyDelegate];
+        }
+        
         [self setUIMessage:message];
         g_free (message);
     }

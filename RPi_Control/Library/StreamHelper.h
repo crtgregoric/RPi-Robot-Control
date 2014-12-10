@@ -9,9 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class StreamHelper;
+
+@protocol StreamHelperDelegate <NSObject>
+
+@optional
+- (void)streamerHelperDidStartDisplayingVideo:(StreamHelper *)streamerHelper;
+
+@end
+
 @interface StreamHelper : NSObject
 
-- (instancetype)initWithVideoFeedView:(UIView *)videoFeedView;
+- (instancetype)initWithVideoFeedView:(UIView *)videoFeedView delegate:(id <StreamHelperDelegate>)delegate;
 
 - (void)stop;
 

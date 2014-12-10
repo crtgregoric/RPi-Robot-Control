@@ -12,7 +12,7 @@
 #import "ControlView.h"
 #import "VideoFeedView.h"
 
-@interface MainViewController () <CommunicationHelperDelegate, ControlViewDelegate>
+@interface MainViewController () <CommunicationHelperDelegate, ControlViewDelegate, StreamHelperDelegate>
 
 @property (nonatomic, strong) CommunicationHelper *communicationHelper;
 @property (nonatomic, strong) StreamHelper *streamHelper;
@@ -24,6 +24,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -42,6 +43,8 @@
 
     self.rightControlView.position = ControlViewPositionRight;
     self.rightControlView.delegate = self;
+    
+    self.activityIndicator.alpha = 0.0f;
 }
 
 #pragma mark - Helper methods
@@ -63,7 +66,12 @@
     self.statusLabel.backgroundColor = [UIColor greenColor];
     
     if (!self.streamHelper) {
-        self.streamHelper = [[StreamHelper alloc] initWithVideoFeedView:self.streamFeedView];
+        self.streamHelper = [[StreamHelper alloc] initWithVideoFeedView:self.streamFeedView delegate:self];
+
+        [self.activityIndicator startAnimating];
+        [UIView animateWithDuration:0.5f animations:^{
+            self.activityIndicator.alpha = 1.0f;
+        }];
     }
 }
 
@@ -105,6 +113,21 @@
     if (controlView.position == ControlViewPositionRight) {
         NSString *message = [self prepareMessageForControlView:controlView andPosition:CGPointZero];
         [self.communicationHelper sendMessage:message];
+    }
+}
+
+#pragma mark - StreamHelperDelegate
+
+- (void)streamerHelperDidStartDisplayingVideo:(StreamHelper *)streamerHelper
+{
+    if (self.activityIndicator.isAnimating) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.5f animations:^{
+                self.activityIndicator.alpha = 0.0f;
+            } completion:^(BOOL finished) {
+                [self.activityIndicator stopAnimating];
+            }];
+        });
     }
 }
 
