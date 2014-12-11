@@ -16,6 +16,8 @@
 @property (nonatomic, strong) UIView *circleView;
 @property (nonatomic) CGVector offsetVector;
 
+@property (nonatomic) BOOL didUpdateCircleViewPosition;
+
 @end
 
 @implementation ControlView
@@ -111,6 +113,15 @@
 
 #pragma mark - Helper methods
 
+- (void)updateCircleViewPositionConditional:(BOOL)conditional {
+    if (!self.didUpdateCircleViewPosition || !conditional) {
+        CGPoint viewCenter = [self viewCenter];
+        viewCenter.x = self.bounds.size.width;
+        self.circleView.center = viewCenter;
+        self.didUpdateCircleViewPosition = YES;
+    }
+}
+
 - (CGFloat)viewRadius {
     return self.frame.size.width < self.frame.size.height ? self.frame.size.width/2 : self.frame.size.height/2;
 }
@@ -147,6 +158,11 @@
         CGPoint center = [self viewCenter];
         CGFloat x = (position.x - center.x) / (self.frame.size.width/2);
         CGFloat y = (center.y - position.y) / (self.frame.size.height/2);
+        
+        if (self.type == ControlViewTypeLedBrightness) {
+            x = position.x / self.frame.size.width;
+            y = 0;
+        }
         
         [self.delegate controlView:self isChangingPositionTo:CGPointMake(x, y)];
     }

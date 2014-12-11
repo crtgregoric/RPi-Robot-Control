@@ -11,8 +11,9 @@
 #import "MainViewController.h"
 #import "CommunicationHelper.h"
 #import "StreamHelper.h"
-#import "ControlView.h"
 #import "VideoFeedView.h"
+#import "ControlView.h"
+#import "LedSegmentControl.h"
 
 @interface MainViewController () <CommunicationHelperDelegate, ControlViewDelegate, StreamHelperDelegate>
 
@@ -24,11 +25,16 @@
 
 @property (weak, nonatomic) IBOutlet ControlView *positionControlView;
 @property (weak, nonatomic) IBOutlet ControlView *tiltControlView;
+
+@property (weak, nonatomic) IBOutlet LedSegmentControl *ledSegment;
 @property (weak, nonatomic) IBOutlet ControlView *brightnessControlView;
+@property (nonatomic) BOOL brightnessControlVisible;
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *brightnessControlBottomConstraint;
 
 @end
 
@@ -50,8 +56,16 @@
     
     self.brightnessControlView.type = ControlViewTypeLedBrightness;
     self.brightnessControlView.delegate = self;
+    self.brightnessControlBottomConstraint.constant = -self.brightnessControlView.frame.size.height;
     
     self.activityIndicator.alpha = 0.0f;
+    
+    [self.view layoutIfNeeded];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self.brightnessControlView updateCircleViewPositionConditional:YES];
 }
 
 #pragma mark - Helper methods
@@ -60,6 +74,26 @@
     int px = position.x * 100;
     int py = position.y * 100;
     return [NSString stringWithFormat:@"%d %d %d|", (int)controlView.type, px, py];
+}
+
+- (void)setBrightnessControlViewVisible:(BOOL)visible {
+    
+    BOOL updateConstraint = NO;
+    if (self.brightnessControlVisible && !visible) {
+        updateConstraint = YES;
+        self.brightnessControlBottomConstraint.constant = -self.brightnessControlView.frame.size.height;
+    } else if (!self.brightnessControlVisible && visible) {
+        [self.brightnessControlView updateCircleViewPositionConditional:NO];
+        updateConstraint = YES;
+        self.brightnessControlBottomConstraint.constant = 20.0f;
+    }
+    
+    if (updateConstraint) {
+        self.brightnessControlVisible = visible;
+        [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [self.view layoutIfNeeded];
+        } completion:nil];
+    }
 }
 
 #pragma mark - CommunicationHelperDelegate
@@ -133,8 +167,7 @@
 
 #pragma mark - StreamHelperDelegate
 
-- (void)streamerHelperDidStartDisplayingVideo:(StreamHelper *)streamerHelper
-{
+- (void)streamerHelperDidStartDisplayingVideo:(StreamHelper *)streamerHelper {
     if (self.activityIndicator.isAnimating) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.5f animations:^{
@@ -147,5 +180,16 @@
         });
     }
 }
+
+#pragma mark - Segment control methods
+
+- (IBAction)ledSegmentValueChanged:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == 0) {
+        [self setBrightnessControlViewVisible:NO];
+    } else {
+        [self setBrightnessControlViewVisible:YES];
+    }
+}
+
 
 @end

@@ -19,11 +19,11 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rf7-8k-101" customClass="VideoFeedView">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZM-pV-PHk" userLabel="Video Animation View">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Jnh-2d-kI7">
                                 <rect key="frame" x="281" y="282" width="37" height="37"/>
@@ -58,6 +58,21 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7VQ-4R-vZV" customClass="LedSegmentControl">
+                                <rect key="frame" x="200" y="502" width="200" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="MG7-gE-KYC"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="0"/>
+                                    <segment title="1"/>
+                                    <segment title="3"/>
+                                    <segment title="5"/>
+                                </segments>
+                                <connections>
+                                    <action selector="ledSegmentValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="CYE-qF-rOa"/>
+                                </connections>
+                            </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOA-JC-ANS" userLabel="Brightness ControlView" customClass="ControlView">
                                 <rect key="frame" x="180" y="550" width="240" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -68,6 +83,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="7VQ-4R-vZV" secondAttribute="centerX" id="3lN-C9-gR8"/>
                             <constraint firstItem="1Sz-o3-IVN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="CNM-kU-Dlo"/>
                             <constraint firstItem="1Sz-o3-IVN" firstAttribute="width" secondItem="3Yo-Ls-udx" secondAttribute="width" id="G0O-ie-QDi"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="rf7-8k-101" secondAttribute="bottom" id="Gzz-jL-x5x"/>
@@ -76,9 +92,7 @@
                             <constraint firstAttribute="centerX" secondItem="S7z-Jk-5pq" secondAttribute="centerX" id="UA4-zU-oDT"/>
                             <constraint firstAttribute="centerX" secondItem="wy0-p9-lF8" secondAttribute="centerX" id="Y5V-NI-h0c"/>
                             <constraint firstItem="rf7-8k-101" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YdP-vX-rhw"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wy0-p9-lF8" secondAttribute="bottom" constant="20" id="ZQ4-6H-a06"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3Yo-Ls-udx" secondAttribute="bottom" constant="40" id="ZbV-HI-CMy"/>
-                            <constraint firstAttribute="trailing" secondItem="1Sz-o3-IVN" secondAttribute="trailing" constant="463" id="bZ7-bU-U0l"/>
                             <constraint firstAttribute="trailing" secondItem="3Yo-Ls-udx" secondAttribute="trailing" constant="40" id="dw2-AY-qMH"/>
                             <constraint firstAttribute="centerX" secondItem="Jnh-2d-kI7" secondAttribute="centerX" id="g6G-4O-DX0"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HOA-JC-ANS" secondAttribute="bottom" constant="20" id="gRC-b1-Yph"/>
@@ -86,6 +100,7 @@
                             <constraint firstItem="3Yo-Ls-udx" firstAttribute="leading" secondItem="HOA-JC-ANS" secondAttribute="trailing" constant="-10" id="lQC-wG-Ubu"/>
                             <constraint firstItem="1Sz-o3-IVN" firstAttribute="height" secondItem="3Yo-Ls-udx" secondAttribute="height" id="q3A-B3-EEk"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1Sz-o3-IVN" secondAttribute="bottom" constant="40" id="rQ5-ls-N2k"/>
+                            <constraint firstItem="HOA-JC-ANS" firstAttribute="top" secondItem="7VQ-4R-vZV" secondAttribute="bottom" constant="20" id="rsb-eY-Oq8"/>
                             <constraint firstItem="HOA-JC-ANS" firstAttribute="leading" secondItem="1Sz-o3-IVN" secondAttribute="trailing" constant="-10" id="sqj-1e-Dg0"/>
                             <constraint firstItem="wy0-p9-lF8" firstAttribute="top" secondItem="S7z-Jk-5pq" secondAttribute="bottom" constant="10" id="tmr-49-1Bi"/>
                             <constraint firstItem="S7z-Jk-5pq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="vGt-zc-5Wi"/>
@@ -94,17 +109,13 @@
                             <constraint firstItem="jZM-pV-PHk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="yxT-U1-5wu"/>
                             <constraint firstItem="rf7-8k-101" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zos-hQ-fIR"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="bZ7-bU-U0l"/>
-                                <exclude reference="ZQ4-6H-a06"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="Jnh-2d-kI7" id="jne-Ew-nUR"/>
+                        <outlet property="brightnessControlBottomConstraint" destination="gRC-b1-Yph" id="Qdw-Hx-hnl"/>
                         <outlet property="brightnessControlView" destination="HOA-JC-ANS" id="7yj-KX-AIn"/>
                         <outlet property="errorLabel" destination="wy0-p9-lF8" id="gEr-9r-PfK"/>
+                        <outlet property="ledSegment" destination="7VQ-4R-vZV" id="UAJ-dc-feU"/>
                         <outlet property="positionControlView" destination="3Yo-Ls-udx" id="Pvy-iU-2CW"/>
                         <outlet property="statusLabel" destination="S7z-Jk-5pq" id="dIF-4A-pb5"/>
                         <outlet property="streamFeedAnimationView" destination="jZM-pV-PHk" id="n5A-9n-CuC"/>
