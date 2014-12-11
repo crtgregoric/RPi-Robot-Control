@@ -22,8 +22,8 @@
 @property (weak, nonatomic) IBOutlet VideoFeedView *streamFeedView;
 @property (weak, nonatomic) IBOutlet UIView *streamFeedAnimationView;
 
-@property (weak, nonatomic) IBOutlet ControlView *leftControlView;
-@property (weak, nonatomic) IBOutlet ControlView *rightControlView;
+@property (weak, nonatomic) IBOutlet ControlView *positionControlView;
+@property (weak, nonatomic) IBOutlet ControlView *tiltControlView;
 @property (weak, nonatomic) IBOutlet ControlView *brightnessControlView;
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
@@ -42,13 +42,13 @@
     self.communicationHelper = [[CommunicationHelper alloc] init];
     self.communicationHelper.delegate = self;
     
-    self.leftControlView.position = ControlViewPositionLeft;
-    self.leftControlView.delegate = self;
+    self.positionControlView.type = ControlViewTypeRobotPosition;
+    self.positionControlView.delegate = self;
 
-    self.rightControlView.position = ControlViewPositionRight;
-    self.rightControlView.delegate = self;
+    self.tiltControlView.type = ControlViewTypeCameraTilt;
+    self.tiltControlView.delegate = self;
     
-    self.brightnessControlView.position = ControlViewPositionBottom;
+    self.brightnessControlView.type = ControlViewTypeLedBrightness;
     self.brightnessControlView.delegate = self;
     
     self.activityIndicator.alpha = 0.0f;
@@ -59,7 +59,7 @@
 - (NSString *)prepareMessageForControlView:(ControlView *)controlView andPosition:(CGPoint)position {
     int px = position.x * 100;
     int py = position.y * 100;
-    return [NSString stringWithFormat:@"%d %d %d|", (int)controlView.position, px, py];
+    return [NSString stringWithFormat:@"%d %d %d|", (int)controlView.type, px, py];
 }
 
 #pragma mark - CommunicationHelperDelegate
@@ -93,6 +93,7 @@
         [UIView animateWithDuration:0.5f animations:^{
             self.streamFeedAnimationView.alpha = 1.0f;
             self.activityIndicator.alpha = 0.0f;
+            
         } completion:^(BOOL finished) {
             [self.activityIndicator stopAnimating];
         }];
@@ -105,6 +106,7 @@
 
     [UIView animateWithDuration:0.5 delay:4.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.errorLabel.alpha = 0.0;
+        
     } completion:^(BOOL finished) {
         if (finished) {
             self.errorLabel.text = @" ";
@@ -117,14 +119,13 @@
 - (void)controlView:(ControlView *)controlView isChangingPositionTo:(CGPoint)position {
     NSString *message = [self prepareMessageForControlView:controlView andPosition:position];
     [self.communicationHelper sendMessage:message];
-    
-    NSString *positionString = (controlView.position == ControlViewPositionLeft) ? @"left" : @"right";
-    NSLog(@"%@: sent: %@", positionString, message);
+    NSLog(@"%@: sent: %@", controlView.typeString, message);
 }
 
 - (void)controlViewDidEndChangigPosition:(ControlView *)controlView {
     NSLog(@"position change ended");
-    if (controlView.position == ControlViewPositionRight) {
+    
+    if (controlView.type == ControlViewTypeRobotPosition) {
         NSString *message = [self prepareMessageForControlView:controlView andPosition:CGPointZero];
         [self.communicationHelper sendMessage:message];
     }
@@ -139,6 +140,7 @@
             [UIView animateWithDuration:0.5f animations:^{
                 self.activityIndicator.alpha = 0.0f;
                 self.streamFeedAnimationView.alpha = 0.0f;
+                
             } completion:^(BOOL finished) {
                 [self.activityIndicator stopAnimating];
             }];

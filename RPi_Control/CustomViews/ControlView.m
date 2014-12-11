@@ -69,7 +69,7 @@
         CGPoint circleCenter = [self viewCenter];
         CGFloat circleRadius = [self viewRadius];
         
-        if (self.position == ControlViewPositionRight) {
+        if (self.type == ControlViewTypeRobotPosition) {
             if (![MathHelpers circleWithCenter:circleCenter andRadius:circleRadius containsPoint:newCenter]) {
                 newCenter = [MathHelpers coordinatesForPoint:newCenter onCircleWithCenter:circleCenter andRadius:circleRadius];
                 [self adjustOffsetVector];
@@ -78,7 +78,7 @@
             
             [self repositionCircleViewToPosition:newCenter];
             
-        } else if (self.position == ControlViewPositionLeft) {
+        } else if (self.type == ControlViewTypeCameraTilt) {
             newCenter = CGPointMake(circleCenter.x, newCenter.y);
             
             if ([MathHelpers circleWithCenter:circleCenter andRadius:circleRadius containsPoint:newCenter]) {
@@ -89,7 +89,7 @@
                 
             }
             
-        } else if (self.position == ControlViewPositionBottom) {
+        } else if (self.type == ControlViewTypeLedBrightness) {
             newCenter = CGPointMake(newCenter.x, circleCenter.y);
             if ([MathHelpers rect:self.bounds containsPoint:newCenter]) {
                 [self repositionCircleViewToPosition:newCenter];
@@ -97,7 +97,7 @@
         }
         
     } else if (panGesture.state == UIGestureRecognizerStateEnded) {
-        if (self.position == ControlViewPositionRight) {
+        if (self.type == ControlViewTypeRobotPosition) {
             [UIView animateWithDuration:0.3 animations:^{
                 self.circleView.center = [self viewCenter];
             }];
@@ -153,6 +153,15 @@
 }
 
 #pragma mark - Getter methods
+
+- (NSString *)typeString {
+    if (self.type == ControlViewTypeCameraTilt) {
+        return @"Camera tilt";
+    } else if (self.type == ControlViewTypeLedBrightness) {
+        return @"Led brightness";
+    }
+    return @"Robot position";
+}
 
 - (UIView *)circleView {
     if (!_circleView) {

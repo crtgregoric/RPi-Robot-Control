@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, ControlViewPosition) {
-    ControlViewPositionRight,
-    ControlViewPositionLeft,
-    ControlViewPositionBottom
+typedef NS_ENUM(NSInteger, ControlViewType) {
+    ControlViewTypeRobotPosition,
+    ControlViewTypeCameraTilt,
+    ControlViewTypeLedBrightness
 };
 
 @class ControlView;
@@ -31,7 +31,8 @@ IB_DESIGNABLE
 
 @property (nonatomic, weak) id <ControlViewDelegate> delegate;
 
-@property (nonatomic) ControlViewPosition position;
+@property (nonatomic) ControlViewType type;
+@property (nonatomic, readonly) NSString *typeString;
 
 @property (nonatomic) IBInspectable CGFloat shapeBorderWidth;
 @property (nonatomic, strong) IBInspectable UIColor *shapeBorderColor;

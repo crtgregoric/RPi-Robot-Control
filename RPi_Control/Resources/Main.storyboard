@@ -41,7 +41,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sz-o3-IVN" userLabel="Left ControlView" customClass="ControlView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sz-o3-IVN" userLabel="Tilt ControlView" customClass="ControlView">
                                 <rect key="frame" x="40" y="410" width="150" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -49,7 +49,7 @@
                                     <constraint firstAttribute="width" constant="150" id="cba-yj-eh0"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Yo-Ls-udx" userLabel="Right ControlView" customClass="ControlView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Yo-Ls-udx" userLabel="Position ControlView" customClass="ControlView">
                                 <rect key="frame" x="410" y="410" width="150" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -58,7 +58,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOA-JC-ANS" customClass="ControlView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOA-JC-ANS" userLabel="Brightness ControlView" customClass="ControlView">
                                 <rect key="frame" x="180" y="550" width="240" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -105,11 +105,11 @@
                         <outlet property="activityIndicator" destination="Jnh-2d-kI7" id="jne-Ew-nUR"/>
                         <outlet property="brightnessControlView" destination="HOA-JC-ANS" id="7yj-KX-AIn"/>
                         <outlet property="errorLabel" destination="wy0-p9-lF8" id="gEr-9r-PfK"/>
-                        <outlet property="leftControlView" destination="1Sz-o3-IVN" id="hvb-DX-cKq"/>
-                        <outlet property="rightControlView" destination="3Yo-Ls-udx" id="EXq-o7-HPW"/>
+                        <outlet property="positionControlView" destination="3Yo-Ls-udx" id="Pvy-iU-2CW"/>
                         <outlet property="statusLabel" destination="S7z-Jk-5pq" id="dIF-4A-pb5"/>
                         <outlet property="streamFeedAnimationView" destination="jZM-pV-PHk" id="n5A-9n-CuC"/>
                         <outlet property="streamFeedView" destination="rf7-8k-101" id="bOb-kI-aTG"/>
+                        <outlet property="tiltControlView" destination="1Sz-o3-IVN" id="aif-H0-u1U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
