@@ -73,35 +73,53 @@
                                     <action selector="ledSegmentValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="CYE-qF-rOa"/>
                                 </connections>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOA-JC-ANS" userLabel="Brightness ControlView" customClass="ControlView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8N0-i7-zy0" userLabel="Brightness Background">
                                 <rect key="frame" x="180" y="550" width="240" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="HAg-DI-876"/>
+                                    <constraint firstAttribute="height" constant="30" id="Qqj-0J-dfw"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxo-fE-1Gw" userLabel="Brightness ControlView" customClass="ControlView">
+                                <rect key="frame" x="195" y="530" width="210" height="70"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="rrH-3z-qJd"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shapeBorderColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shapeBackgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="7VQ-4R-vZV" secondAttribute="centerX" id="3lN-C9-gR8"/>
                             <constraint firstItem="1Sz-o3-IVN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="CNM-kU-Dlo"/>
+                            <constraint firstItem="gxo-fE-1Gw" firstAttribute="leading" secondItem="8N0-i7-zy0" secondAttribute="leading" constant="15" id="CzS-Zm-L8z"/>
+                            <constraint firstItem="gxo-fE-1Gw" firstAttribute="trailing" secondItem="8N0-i7-zy0" secondAttribute="trailing" constant="-15" id="DXE-xW-Y8e"/>
                             <constraint firstItem="1Sz-o3-IVN" firstAttribute="width" secondItem="3Yo-Ls-udx" secondAttribute="width" id="G0O-ie-QDi"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="rf7-8k-101" secondAttribute="bottom" id="Gzz-jL-x5x"/>
+                            <constraint firstItem="8N0-i7-zy0" firstAttribute="top" secondItem="7VQ-4R-vZV" secondAttribute="bottom" constant="20" id="LnQ-cu-W1n"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8N0-i7-zy0" secondAttribute="bottom" constant="20" id="Nau-f1-yxA"/>
+                            <constraint firstItem="3Yo-Ls-udx" firstAttribute="leading" secondItem="8N0-i7-zy0" secondAttribute="trailing" constant="-10" id="NcM-kt-uVl"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jZM-pV-PHk" secondAttribute="bottom" id="SgP-jl-F9d"/>
                             <constraint firstAttribute="trailing" secondItem="jZM-pV-PHk" secondAttribute="trailing" id="T3s-a7-xBI"/>
                             <constraint firstAttribute="centerX" secondItem="S7z-Jk-5pq" secondAttribute="centerX" id="UA4-zU-oDT"/>
+                            <constraint firstItem="gxo-fE-1Gw" firstAttribute="centerY" secondItem="8N0-i7-zy0" secondAttribute="centerY" id="USb-vH-lpK"/>
                             <constraint firstAttribute="centerX" secondItem="wy0-p9-lF8" secondAttribute="centerX" id="Y5V-NI-h0c"/>
                             <constraint firstItem="rf7-8k-101" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YdP-vX-rhw"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3Yo-Ls-udx" secondAttribute="bottom" constant="40" id="ZbV-HI-CMy"/>
                             <constraint firstAttribute="trailing" secondItem="3Yo-Ls-udx" secondAttribute="trailing" constant="40" id="dw2-AY-qMH"/>
                             <constraint firstAttribute="centerX" secondItem="Jnh-2d-kI7" secondAttribute="centerX" id="g6G-4O-DX0"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HOA-JC-ANS" secondAttribute="bottom" constant="20" id="gRC-b1-Yph"/>
                             <constraint firstItem="jZM-pV-PHk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="h4o-WP-GT8"/>
-                            <constraint firstItem="3Yo-Ls-udx" firstAttribute="leading" secondItem="HOA-JC-ANS" secondAttribute="trailing" constant="-10" id="lQC-wG-Ubu"/>
+                            <constraint firstItem="8N0-i7-zy0" firstAttribute="leading" secondItem="1Sz-o3-IVN" secondAttribute="trailing" constant="-10" id="l4R-Bu-r4M"/>
                             <constraint firstItem="1Sz-o3-IVN" firstAttribute="height" secondItem="3Yo-Ls-udx" secondAttribute="height" id="q3A-B3-EEk"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1Sz-o3-IVN" secondAttribute="bottom" constant="40" id="rQ5-ls-N2k"/>
-                            <constraint firstItem="HOA-JC-ANS" firstAttribute="top" secondItem="7VQ-4R-vZV" secondAttribute="bottom" constant="20" id="rsb-eY-Oq8"/>
-                            <constraint firstItem="HOA-JC-ANS" firstAttribute="leading" secondItem="1Sz-o3-IVN" secondAttribute="trailing" constant="-10" id="sqj-1e-Dg0"/>
                             <constraint firstItem="wy0-p9-lF8" firstAttribute="top" secondItem="S7z-Jk-5pq" secondAttribute="bottom" constant="10" id="tmr-49-1Bi"/>
                             <constraint firstItem="S7z-Jk-5pq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="vGt-zc-5Wi"/>
                             <constraint firstAttribute="centerY" secondItem="Jnh-2d-kI7" secondAttribute="centerY" id="vVe-ac-tpJ"/>
@@ -112,8 +130,9 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="Jnh-2d-kI7" id="jne-Ew-nUR"/>
-                        <outlet property="brightnessControlBottomConstraint" destination="gRC-b1-Yph" id="Qdw-Hx-hnl"/>
-                        <outlet property="brightnessControlView" destination="HOA-JC-ANS" id="7yj-KX-AIn"/>
+                        <outlet property="brightnessBackgroundBottomConstraint" destination="Nau-f1-yxA" id="Rj5-kk-pmE"/>
+                        <outlet property="brightnessBackgroundView" destination="8N0-i7-zy0" id="2CF-C2-PuA"/>
+                        <outlet property="brightnessControlView" destination="gxo-fE-1Gw" id="v22-Yh-N8h"/>
                         <outlet property="errorLabel" destination="wy0-p9-lF8" id="gEr-9r-PfK"/>
                         <outlet property="ledSegment" destination="7VQ-4R-vZV" id="UAJ-dc-feU"/>
                         <outlet property="positionControlView" destination="3Yo-Ls-udx" id="Pvy-iU-2CW"/>
