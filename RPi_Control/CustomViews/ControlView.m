@@ -88,6 +88,12 @@
                 [self adjustOffsetVector];
                 
             }
+            
+        } else if (self.position == ControlViewPositionBottom) {
+            newCenter = CGPointMake(newCenter.x, circleCenter.y);
+            if ([MathHelpers rect:self.bounds containsPoint:newCenter]) {
+                [self repositionCircleViewToPosition:newCenter];
+            }
         }
         
     } else if (panGesture.state == UIGestureRecognizerStateEnded) {

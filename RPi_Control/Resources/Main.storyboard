@@ -35,6 +35,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wy0-p9-lF8" userLabel="Error Label">
+                                <rect key="frame" x="298" y="59" width="4" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sz-o3-IVN" userLabel="Left ControlView" customClass="ControlView">
                                 <rect key="frame" x="40" y="410" width="150" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -52,12 +58,13 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wy0-p9-lF8" userLabel="Error Label">
-                                <rect key="frame" x="298" y="565" width="4" height="15"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOA-JC-ANS" customClass="ControlView">
+                                <rect key="frame" x="180" y="550" width="240" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="HAg-DI-876"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -74,9 +81,13 @@
                             <constraint firstAttribute="trailing" secondItem="1Sz-o3-IVN" secondAttribute="trailing" constant="463" id="bZ7-bU-U0l"/>
                             <constraint firstAttribute="trailing" secondItem="3Yo-Ls-udx" secondAttribute="trailing" constant="40" id="dw2-AY-qMH"/>
                             <constraint firstAttribute="centerX" secondItem="Jnh-2d-kI7" secondAttribute="centerX" id="g6G-4O-DX0"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HOA-JC-ANS" secondAttribute="bottom" constant="20" id="gRC-b1-Yph"/>
                             <constraint firstItem="jZM-pV-PHk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="h4o-WP-GT8"/>
+                            <constraint firstItem="3Yo-Ls-udx" firstAttribute="leading" secondItem="HOA-JC-ANS" secondAttribute="trailing" constant="-10" id="lQC-wG-Ubu"/>
                             <constraint firstItem="1Sz-o3-IVN" firstAttribute="height" secondItem="3Yo-Ls-udx" secondAttribute="height" id="q3A-B3-EEk"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1Sz-o3-IVN" secondAttribute="bottom" constant="40" id="rQ5-ls-N2k"/>
+                            <constraint firstItem="HOA-JC-ANS" firstAttribute="leading" secondItem="1Sz-o3-IVN" secondAttribute="trailing" constant="-10" id="sqj-1e-Dg0"/>
+                            <constraint firstItem="wy0-p9-lF8" firstAttribute="top" secondItem="S7z-Jk-5pq" secondAttribute="bottom" constant="10" id="tmr-49-1Bi"/>
                             <constraint firstItem="S7z-Jk-5pq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="vGt-zc-5Wi"/>
                             <constraint firstAttribute="centerY" secondItem="Jnh-2d-kI7" secondAttribute="centerY" id="vVe-ac-tpJ"/>
                             <constraint firstAttribute="trailing" secondItem="rf7-8k-101" secondAttribute="trailing" id="wGC-nc-OMa"/>
@@ -86,11 +97,13 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="bZ7-bU-U0l"/>
+                                <exclude reference="ZQ4-6H-a06"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="Jnh-2d-kI7" id="jne-Ew-nUR"/>
+                        <outlet property="brightnessControlView" destination="HOA-JC-ANS" id="7yj-KX-AIn"/>
                         <outlet property="errorLabel" destination="wy0-p9-lF8" id="gEr-9r-PfK"/>
                         <outlet property="leftControlView" destination="1Sz-o3-IVN" id="hvb-DX-cKq"/>
                         <outlet property="rightControlView" destination="3Yo-Ls-udx" id="EXq-o7-HPW"/>

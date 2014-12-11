@@ -15,4 +15,6 @@
 + (CGPoint)coordinatesForPoint:(CGPoint)point onCircleWithCenter:(CGPoint)center andRadius:(CGFloat)radius;
 + (CGFloat)angleForPoint:(CGPoint)point onCircleWithCenter:(CGPoint)center andRadius:(CGFloat)radius;
 
++ (BOOL)rect:(CGRect)rect containsPoint:(CGPoint)point;
+
 @end

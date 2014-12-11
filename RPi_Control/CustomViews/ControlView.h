@@ -10,7 +10,8 @@
 
 typedef NS_ENUM(NSInteger, ControlViewPosition) {
     ControlViewPositionRight,
-    ControlViewPositionLeft
+    ControlViewPositionLeft,
+    ControlViewPositionBottom
 };
 
 @class ControlView;

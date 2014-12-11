@@ -15,5 +15,5 @@ static const NSString *kHostName = @"cromartie.local";
 #else
 static const NSString *kHostName = @"rpi.local";
 #endif
-static const NSInteger kPortNumber = 1234;
+static const NSInteger kPortNumber = 6000;
 static const NSInteger kStreamPortNumber = 5000;

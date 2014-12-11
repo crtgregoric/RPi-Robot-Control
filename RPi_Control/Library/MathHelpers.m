@@ -32,4 +32,9 @@
     return atan2(dy, dx);
 }
 
++ (BOOL)rect:(CGRect)rect containsPoint:(CGPoint)point
+{
+    return CGRectContainsPoint(rect, point);
+}
+
 @end

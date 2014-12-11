@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 akro-in. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "MainViewController.h"
 #import "CommunicationHelper.h"
 #import "StreamHelper.h"
@@ -22,6 +24,7 @@
 
 @property (weak, nonatomic) IBOutlet ControlView *leftControlView;
 @property (weak, nonatomic) IBOutlet ControlView *rightControlView;
+@property (weak, nonatomic) IBOutlet ControlView *brightnessControlView;
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
@@ -44,6 +47,9 @@
 
     self.rightControlView.position = ControlViewPositionRight;
     self.rightControlView.delegate = self;
+    
+    self.brightnessControlView.position = ControlViewPositionBottom;
+    self.brightnessControlView.delegate = self;
     
     self.activityIndicator.alpha = 0.0f;
 }
