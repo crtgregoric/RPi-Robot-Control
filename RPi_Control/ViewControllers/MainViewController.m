@@ -17,7 +17,8 @@
 @property (nonatomic, strong) CommunicationHelper *communicationHelper;
 @property (nonatomic, strong) StreamHelper *streamHelper;
 
-@property (weak, nonatomic)  IBOutlet VideoFeedView *streamFeedView;
+@property (weak, nonatomic) IBOutlet VideoFeedView *streamFeedView;
+@property (weak, nonatomic) IBOutlet UIView *streamFeedAnimationView;
 
 @property (weak, nonatomic) IBOutlet ControlView *leftControlView;
 @property (weak, nonatomic) IBOutlet ControlView *rightControlView;
@@ -82,6 +83,10 @@
     if (self.streamHelper) {
         [self.streamHelper stop];
         self.streamHelper = nil;
+        
+        [UIView animateWithDuration:0.5f animations:^{
+            self.streamFeedAnimationView.alpha = 1.0f;
+        }];
     }
 }
 
@@ -124,6 +129,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.5f animations:^{
                 self.activityIndicator.alpha = 0.0f;
+                self.streamFeedAnimationView.alpha = 0.0f;
             } completion:^(BOOL finished) {
                 [self.activityIndicator stopAnimating];
             }];
