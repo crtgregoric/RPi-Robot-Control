@@ -82,8 +82,10 @@ static const NSUInteger kBufferSize = 256;
 #pragma mark - Sending and receiving messages
 
 - (void)sendMessage:(NSString *)message {
-    NSData *data = [[NSData alloc] initWithData:[message dataUsingEncoding:NSASCIIStringEncoding]];
-    [self.outputStream write:data.bytes maxLength:data.length];
+    if (message) {
+        NSData *data = [[NSData alloc] initWithData:[message dataUsingEncoding:NSASCIIStringEncoding]];
+        [self.outputStream write:data.bytes maxLength:data.length];
+    }
 }
 
 - (void)receiveDataFromInputStream:(NSInputStream *)stream {

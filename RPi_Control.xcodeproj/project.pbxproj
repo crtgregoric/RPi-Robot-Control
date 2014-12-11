@@ -23,6 +23,7 @@
 		6C32E07119FD050200CF69D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C32E07019FD050200CF69D5 /* LaunchScreen.storyboard */; };
 		6C32E07619FD270600CF69D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C32E07519FD270600CF69D5 /* CoreGraphics.framework */; };
 		6C98A0531A3A188B001E12E2 /* LedSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C98A0521A3A188B001E12E2 /* LedSegmentControl.m */; };
+		6C98A0561A3A4ACA001E12E2 /* MessageComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C98A0551A3A4ACA001E12E2 /* MessageComposer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		6C32E07519FD270600CF69D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6C98A0511A3A188B001E12E2 /* LedSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LedSegmentControl.h; path = CustomViews/LedSegmentControl.h; sourceTree = "<group>"; };
 		6C98A0521A3A188B001E12E2 /* LedSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LedSegmentControl.m; path = CustomViews/LedSegmentControl.m; sourceTree = "<group>"; };
+		6C98A0541A3A4ACA001E12E2 /* MessageComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageComposer.h; path = Library/MessageComposer.h; sourceTree = "<group>"; };
+		6C98A0551A3A4ACA001E12E2 /* MessageComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageComposer.m; path = Library/MessageComposer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,8 @@
 				6C31B2421A082797008B936C /* CommunicationHelper.m */,
 				6C1A82DF1A38544900D416E4 /* StreamHelper.h */,
 				6C1A82E01A38544900D416E4 /* StreamHelper.m */,
+				6C98A0541A3A4ACA001E12E2 /* MessageComposer.h */,
+				6C98A0551A3A4ACA001E12E2 /* MessageComposer.m */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				6C98A0531A3A188B001E12E2 /* LedSegmentControl.m in Sources */,
 				6C31B2431A082797008B936C /* CommunicationHelper.m in Sources */,
 				6C234A9219FEF0110083ACE4 /* MathHelpers.m in Sources */,
+				6C98A0561A3A4ACA001E12E2 /* MessageComposer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
