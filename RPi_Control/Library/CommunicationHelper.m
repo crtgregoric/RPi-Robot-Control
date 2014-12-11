@@ -40,8 +40,8 @@ static const NSUInteger kBufferSize = 256;
     [self closeStream:self.inputStream];
     [self closeStream:self.outputStream];
     
-    CFReadStreamRef readStream;
-    CFWriteStreamRef writeStream;
+    CFReadStreamRef readStream = NULL;
+    CFWriteStreamRef writeStream = NULL;
     CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)kHostName, kPortNumber, &readStream, &writeStream);
     
     self.inputStream = (__bridge NSInputStream *)readStream;

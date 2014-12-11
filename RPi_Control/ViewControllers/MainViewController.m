@@ -86,6 +86,9 @@
         
         [UIView animateWithDuration:0.5f animations:^{
             self.streamFeedAnimationView.alpha = 1.0f;
+            self.activityIndicator.alpha = 0.0f;
+        } completion:^(BOOL finished) {
+            [self.activityIndicator stopAnimating];
         }];
     }
 }
