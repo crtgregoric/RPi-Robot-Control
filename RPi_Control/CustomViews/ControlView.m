@@ -113,11 +113,16 @@
 
 #pragma mark - Helper methods
 
-- (void)updateCircleViewPositionConditional:(BOOL)conditional {
+- (void)updateCircleViewPositionConditional:(BOOL)conditional animated:(BOOL)animated {
     if (!self.didUpdateCircleViewPosition || !conditional) {
         CGPoint viewCenter = [self viewCenter];
         viewCenter.x = self.bounds.size.width;
-        self.circleView.center = viewCenter;
+        
+        CGFloat duration = animated ? 0.3f : 0.0f;
+        [UIView animateWithDuration:duration animations:^{
+            self.circleView.center = viewCenter;
+        }];
+        
         self.didUpdateCircleViewPosition = YES;
     }
 }

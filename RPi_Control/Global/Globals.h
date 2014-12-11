@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define MAC_SERVER
+//#define MAC_SERVER
 
 #ifdef MAC_SERVER
 static const NSString *kHostName = @"cromartie.local";

@@ -66,7 +66,7 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    [self.brightnessControlView updateCircleViewPositionConditional:YES];
+    [self.brightnessControlView updateCircleViewPositionConditional:YES animated:NO];
 }
 
 #pragma mark - Helper methods
@@ -91,7 +91,7 @@
         self.brightnessBackgroundBottomConstraint.constant = -self.brightnessBackgroundView.frame.size.height;
         
     } else if (!self.brightnessControlVisible && visible) {
-        [self.brightnessControlView updateCircleViewPositionConditional:NO];
+        [self.brightnessControlView updateCircleViewPositionConditional:NO animated:NO];
         updateConstraint = YES;
         self.brightnessBackgroundBottomConstraint.constant = 20.0f;
     }
@@ -122,11 +122,17 @@
             self.activityIndicator.alpha = 1.0f;
         }];
     }
+    
+    [self.ledSegment setSelectedSegmentIndex:0];
+    [self setBrightnessControlViewVisible:NO];
 }
 
 - (void)communicationHelperDidDisconnectFromHost:(CommunicationHelper *)helper {
     self.statusLabel.text = @"Not connected";
     self.statusLabel.backgroundColor = [UIColor redColor];
+    
+    [self.ledSegment setSelectedSegmentIndex:0];
+    [self setBrightnessControlViewVisible:NO];
     
     if (self.streamHelper) {
         [self.streamHelper stop];
@@ -162,7 +168,7 @@
     NSString *message;
     
     if (controlView.type == ControlViewTypeCameraTilt) {
-        message = [MessageComposer messageWithCommandType:controlView.type cameraTilt:position.x];
+        message = [MessageComposer messageWithCommandType:controlView.type cameraTilt:position.y];
         
     } else if (controlView.type == ControlViewTypeRobotPosition) {
         message = [MessageComposer messageWithCommandType:controlView.type position:position];
@@ -211,6 +217,10 @@
         NSLog(@"Segment sent: all led off");
 
     } else {
+        if (self.brightnessControlVisible) {
+            [self.brightnessControlView updateCircleViewPositionConditional:NO animated:YES];
+        }
+        
         [self setBrightnessControlViewVisible:YES];
         message = [MessageComposer messageWithCommandType:self.brightnessControlView.type ledOnForState:sender.selectedSegmentIndex];
         NSLog(@"Segment sent: led state: %d", sender.selectedSegmentIndex);

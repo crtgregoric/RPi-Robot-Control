@@ -55,7 +55,6 @@
     self.layer.cornerRadius = 4.0f;
     
     [self setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor blackColor] } forState:UIControlStateNormal];
-    [self setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor clearColor] } forState:UIControlStateSelected];
     
     UIImage *blackDivider = [self imageWithColor:[UIColor blackColor]];
     [self setDividerImage:blackDivider forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];

@@ -15,7 +15,7 @@
 }
 
 + (NSString *)messageWithCommandType:(int)type cameraTilt:(CGFloat)tilt {
-    return [self basicMessageWithCommandType:type firstArg:(int)(tilt * 100) secondArg:0];
+    return [self basicMessageWithCommandType:type firstArg:0 secondArg:(int)(tilt * 100)];
 }
 
 + (NSString *)messageWithCommandType:(int)type position:(CGPoint)position {

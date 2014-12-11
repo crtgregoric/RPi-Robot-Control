@@ -41,6 +41,6 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable CGFloat circleRadius;
 @property (nonatomic, strong) IBInspectable UIColor *circleColor;
 
-- (void)updateCircleViewPositionConditional:(BOOL)conditional;
+- (void)updateCircleViewPositionConditional:(BOOL)conditional animated:(BOOL)animated;
 
 @end
