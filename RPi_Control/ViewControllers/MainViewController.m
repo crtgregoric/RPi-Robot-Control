@@ -18,9 +18,6 @@
 #import "ControlView.h"
 #import "LedSegmentControl.h"
 
-//#define DEBUGGING NO
-//#define NSLog if(DEBUGGING) NSLog
-
 @interface MainViewController () <CommunicationHelperDelegate, ControlViewDelegate, StreamHelperDelegate>
 
 @property (nonatomic, strong) CommunicationHelper *communicationHelper;

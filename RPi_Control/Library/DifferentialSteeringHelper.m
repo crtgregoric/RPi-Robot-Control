@@ -15,44 +15,32 @@
 
     CGFloat distance = sqrt(pow(coordinate.x, 2) + pow(coordinate.y, 2));
     CGFloat angle = [MathHelpers angleForPoint:coordinate onCircleWithCenter:CGPointZero andRadius:radius];
-    angle = [MathHelpers radianToDegrees:angle];
     
     if (coordinate.x >= 0 && coordinate.y >= 0) {
-        //
         // I. quadrant
-        //
-        angle = angle - 45.0f;
+        angle = angle - M_PI_4;
         coordinate.x = distance;
-        coordinate.y = angle / 45.0f;
+        coordinate.y = distance * (angle / M_PI_4);
         
     } else if (coordinate.x <= 0 && coordinate.y >= 0) {
-        //
         // II. quadrant
-        //
-        angle = angle - 135.0f;
-        coordinate.x = -angle / 45.0f;
+        angle = angle - (3 * M_PI_4);
+        coordinate.x = distance * (-angle / M_PI_4);
         coordinate.y = distance;
         
     } else if (coordinate.x <= 0 && coordinate.y <= 0) {
-        //
         // III. quadrant
-        //
-        angle = -(135.0f + angle);
+        angle = angle + (3 * M_PI_4);
         coordinate.x = -distance;
-        coordinate.y = angle / 45.0f;
+        coordinate.y = distance * (-angle / M_PI_4);
 
     } else {
-        //
         // IV. quadrant
-        //
-        angle = (45.0f + angle);
-        coordinate.x = angle / 45.0f;
+        angle = angle + M_PI_4;
+        coordinate.x = distance * (angle / M_PI_4);
         coordinate.y = -distance;
 
     }
-    
-//    NSLog(@"x: %.1f, y:%.1f", coordinate.x, coordinate.y);
-//    NSLog(@"\n\n");
     
     return coordinate;
 }
