@@ -37,6 +37,7 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable CGFloat shapeBorderWidth;
 @property (nonatomic, strong) IBInspectable UIColor *shapeBorderColor;
 @property (nonatomic, strong) IBInspectable UIColor *shapeBackgroundColor;
+@property (nonatomic, readonly) CGFloat shapeRadius;
 
 @property (nonatomic) IBInspectable CGFloat circleRadius;
 @property (nonatomic, strong) IBInspectable UIColor *circleColor;

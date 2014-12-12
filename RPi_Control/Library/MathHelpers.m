@@ -18,7 +18,7 @@
 
 + (CGPoint)coordinatesForPoint:(CGPoint)point onCircleWithCenter:(CGPoint)center andRadius:(CGFloat)radius {
     CGFloat angle = [MathHelpers angleForPoint:point onCircleWithCenter:center andRadius:radius];
-    
+        
     CGFloat x = center.x + radius * cos(angle);
     CGFloat y = center.y + radius * sin(angle);
     
@@ -30,6 +30,14 @@
     CGFloat dy = point.y - center.y;
 
     return atan2(dy, dx);
+}
+
++ (CGFloat)radianToDegrees:(CGFloat)angle {
+    return angle * (180.0f / M_PI);
+}
+
++ (CGFloat)degreesToRadian:(CGFloat)angle {
+    return angle * (M_PI / 180.0f);
 }
 
 + (BOOL)rect:(CGRect)rect containsPoint:(CGPoint)point

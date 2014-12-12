@@ -175,6 +175,10 @@
 
 #pragma mark - Getter methods
 
+- (CGFloat)shapeRadius {
+    return [self viewRadius];
+}
+
 - (NSString *)typeString {
     if (self.type == ControlViewTypeCameraTilt) {
         return @"Camera tilt";

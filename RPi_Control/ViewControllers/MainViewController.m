@@ -12,10 +12,14 @@
 #import "CommunicationHelper.h"
 #import "StreamHelper.h"
 #import "MessageComposer.h"
+#import "DifferentialSteeringHelper.h"
 
 #import "VideoFeedView.h"
 #import "ControlView.h"
 #import "LedSegmentControl.h"
+
+//#define DEBUGGING NO
+//#define NSLog if(DEBUGGING) NSLog
 
 @interface MainViewController () <CommunicationHelperDelegate, ControlViewDelegate, StreamHelperDelegate>
 
@@ -171,6 +175,7 @@
         message = [MessageComposer messageWithCommandType:controlView.type cameraTilt:position.y];
         
     } else if (controlView.type == ControlViewTypeRobotPosition) {
+        position = [DifferentialSteeringHelper differentialMotorSpeedForCoordinate:position inCircleWithRadius:controlView.shapeRadius];
         message = [MessageComposer messageWithCommandType:controlView.type position:position];
         
     } else if (controlView.type == ControlViewTypeLedBrightness) {

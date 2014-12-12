@@ -22,6 +22,7 @@
 		6C32E06F19FD015F00CF69D5 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C32E06E19FD015F00CF69D5 /* MainViewController.m */; };
 		6C32E07119FD050200CF69D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C32E07019FD050200CF69D5 /* LaunchScreen.storyboard */; };
 		6C32E07619FD270600CF69D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C32E07519FD270600CF69D5 /* CoreGraphics.framework */; };
+		6C378A851A3B41180043C56F /* DifferentialSteeringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C378A841A3B41180043C56F /* DifferentialSteeringHelper.m */; };
 		6C98A0531A3A188B001E12E2 /* LedSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C98A0521A3A188B001E12E2 /* LedSegmentControl.m */; };
 		6C98A0561A3A4ACA001E12E2 /* MessageComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C98A0551A3A4ACA001E12E2 /* MessageComposer.m */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,8 @@
 		6C32E06E19FD015F00CF69D5 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ViewControllers/MainViewController.m; sourceTree = "<group>"; };
 		6C32E07019FD050200CF69D5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6C32E07519FD270600CF69D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6C378A831A3B41180043C56F /* DifferentialSteeringHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DifferentialSteeringHelper.h; path = Library/DifferentialSteeringHelper.h; sourceTree = "<group>"; };
+		6C378A841A3B41180043C56F /* DifferentialSteeringHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DifferentialSteeringHelper.m; path = Library/DifferentialSteeringHelper.m; sourceTree = "<group>"; };
 		6C98A0511A3A188B001E12E2 /* LedSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LedSegmentControl.h; path = CustomViews/LedSegmentControl.h; sourceTree = "<group>"; };
 		6C98A0521A3A188B001E12E2 /* LedSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LedSegmentControl.m; path = CustomViews/LedSegmentControl.m; sourceTree = "<group>"; };
 		6C98A0541A3A4ACA001E12E2 /* MessageComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageComposer.h; path = Library/MessageComposer.h; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 				6C1A82E01A38544900D416E4 /* StreamHelper.m */,
 				6C98A0541A3A4ACA001E12E2 /* MessageComposer.h */,
 				6C98A0551A3A4ACA001E12E2 /* MessageComposer.m */,
+				6C378A831A3B41180043C56F /* DifferentialSteeringHelper.h */,
+				6C378A841A3B41180043C56F /* DifferentialSteeringHelper.m */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				6C1A82E61A385A7400D416E4 /* gst_ios_init.m in Sources */,
 				6C32E06319FD003A00CF69D5 /* AppDelegate.m in Sources */,
 				6C32E06F19FD015F00CF69D5 /* MainViewController.m in Sources */,
+				6C378A851A3B41180043C56F /* DifferentialSteeringHelper.m in Sources */,
 				6C32E03D19FCFFEE00CF69D5 /* main.m in Sources */,
 				6C1A82E11A38544900D416E4 /* StreamHelper.m in Sources */,
 				6C98A0531A3A188B001E12E2 /* LedSegmentControl.m in Sources */,
