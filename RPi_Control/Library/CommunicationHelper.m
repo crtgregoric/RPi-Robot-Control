@@ -8,7 +8,7 @@
 
 #import "CommunicationHelper.h"
 
-static const NSUInteger kReconnectInterval = 5;
+static const NSTimeInterval kReconnectInterval = 5.0;
 static const NSUInteger kBufferSize = 256;
 
 @interface CommunicationHelper () <NSStreamDelegate>
@@ -17,6 +17,7 @@ static const NSUInteger kBufferSize = 256;
 @property (nonatomic, strong) NSOutputStream *outputStream;
 
 @property (nonatomic, strong) NSTimer *reconnectTimer;
+@property (nonatomic, strong) NSTimer *checkStatusTimer;
 
 @end
 
@@ -29,6 +30,7 @@ static const NSUInteger kBufferSize = 256;
     
     if (self) {
         [self connect];
+        self.checkStatusTimer = [NSTimer scheduledTimerWithTimeInterval:kReconnectInterval target:self selector:@selector(checkStatus) userInfo:nil repeats:YES];
     }
     
     return self;
@@ -55,7 +57,7 @@ static const NSUInteger kBufferSize = 256;
 
     [self.inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [self.outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-
+    
     [self.inputStream open];
     [self.outputStream open];
 }
@@ -65,11 +67,14 @@ static const NSUInteger kBufferSize = 256;
 - (void)startReconnecting {
     if (!self.reconnectTimer.isValid) {
         self.reconnectTimer = [NSTimer scheduledTimerWithTimeInterval:kReconnectInterval target:self selector:@selector(connect) userInfo:nil repeats:YES];
+        
+        [self.checkStatusTimer invalidate];
     }
 }
 
 - (void)stopReconnectiong {
     [self.reconnectTimer invalidate];
+    [self.checkStatusTimer invalidate];
 }
 
 - (void)closeStream:(NSStream *)stream {
@@ -79,10 +84,24 @@ static const NSUInteger kBufferSize = 256;
     stream = nil;
 }
 
+- (void)checkStatus {
+    if (self.outputStream.streamStatus == NSStreamStatusOpening) {
+        if ([self.delegate respondsToSelector:@selector(communicationHelper:encounteredAnError:)]) {
+            NSError *error = [NSError errorWithDomain:@"error" code:404 userInfo:@{ NSLocalizedDescriptionKey : @"Host not found." }];
+            [self.delegate communicationHelper:self encounteredAnError:error];
+        }
+        
+        [self connect];
+        
+    } else {
+        [self.checkStatusTimer invalidate];
+    }
+}
+
 #pragma mark - Sending and receiving messages
 
 - (void)sendMessage:(NSString *)message {
-    if (message) {
+    if (message && self.outputStream.streamStatus == NSStreamStatusOpen) {
         NSData *data = [[NSData alloc] initWithData:[message dataUsingEncoding:NSASCIIStringEncoding]];
         [self.outputStream write:data.bytes maxLength:data.length];
     }
