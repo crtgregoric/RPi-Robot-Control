@@ -134,13 +134,20 @@
     
     [self.ledSegment setSelectedSegmentIndex:0];
     [self setBrightnessControlViewVisible:NO];
+
+    NSTimeInterval duration = 0.5f;
     
     if (self.streamHelper) {
         [self.streamHelper stop];
         self.streamHelper = nil;
         
-        [UIView animateWithDuration:0.5f animations:^{
+        [UIView animateWithDuration:duration animations:^{
             self.streamFeedAnimationView.alpha = 1.0f;
+        }];
+    }
+    
+    if (self.activityIndicator.isAnimating) {
+        [UIView animateWithDuration:duration animations:^{
             self.activityIndicator.alpha = 0.0f;
             
         } completion:^(BOOL finished) {

@@ -86,8 +86,10 @@ static const NSUInteger kBufferSize = 256;
 
 - (void)checkStatus {
     if (self.outputStream.streamStatus == NSStreamStatusOpening) {
+        NSError *error = [NSError errorWithDomain:@"error" code:404 userInfo:@{ NSLocalizedDescriptionKey : @"Host not found." }];
+        NSLog(@"Check status error: %@", error.localizedDescription);
+        
         if ([self.delegate respondsToSelector:@selector(communicationHelper:encounteredAnError:)]) {
-            NSError *error = [NSError errorWithDomain:@"error" code:404 userInfo:@{ NSLocalizedDescriptionKey : @"Host not found." }];
             [self.delegate communicationHelper:self encounteredAnError:error];
         }
         
