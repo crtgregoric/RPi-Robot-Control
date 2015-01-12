@@ -36,4 +36,9 @@
     return [self basicMessageWithCommandType:type firstArg:(int)(brightness * 100) secondArg:state];
 }
 
++ (NSString *)shutdownMessage
+{
+    return [self basicMessageWithCommandType:3 firstArg:0 secondArg:0];
+}
+
 @end

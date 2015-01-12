@@ -70,6 +70,13 @@
     [self.brightnessControlView updateCircleViewPositionConditional:YES animated:NO];
 }
 
+#pragma mark - Button actions
+
+- (IBAction)shutdownButtonPressed:(id)sender
+{
+    [self.communicationHelper sendMessage:[MessageComposer shutdownMessage]];
+}
+
 #pragma mark - Helper methods
 
 - (void)setupUI {

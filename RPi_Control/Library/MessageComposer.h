@@ -20,4 +20,6 @@
 + (NSString *)messageWithCommandType:(int)type ledOnForState:(int)state;
 + (NSString *)messageWithCommandType:(int)type ledBrightness:(CGFloat)brightness ledState:(int)state;
 
++ (NSString *)shutdownMessage;
+
 @end
