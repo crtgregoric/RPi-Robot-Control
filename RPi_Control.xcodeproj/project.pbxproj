@@ -25,6 +25,7 @@
 		6C378A851A3B41180043C56F /* DifferentialSteeringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C378A841A3B41180043C56F /* DifferentialSteeringHelper.m */; };
 		6C98A0531A3A188B001E12E2 /* LedSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C98A0521A3A188B001E12E2 /* LedSegmentControl.m */; };
 		6C98A0561A3A4ACA001E12E2 /* MessageComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C98A0551A3A4ACA001E12E2 /* MessageComposer.m */; };
+		6CE152A31A7AEB5700716A52 /* ControlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE152A21A7AEB5700716A52 /* ControlButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		6C98A0521A3A188B001E12E2 /* LedSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LedSegmentControl.m; path = CustomViews/LedSegmentControl.m; sourceTree = "<group>"; };
 		6C98A0541A3A4ACA001E12E2 /* MessageComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageComposer.h; path = Library/MessageComposer.h; sourceTree = "<group>"; };
 		6C98A0551A3A4ACA001E12E2 /* MessageComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageComposer.m; path = Library/MessageComposer.m; sourceTree = "<group>"; };
+		6CE152A11A7AEB5700716A52 /* ControlButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControlButton.h; path = CustomViews/ControlButton.h; sourceTree = "<group>"; };
+		6CE152A21A7AEB5700716A52 /* ControlButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControlButton.m; path = CustomViews/ControlButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +215,8 @@
 				6C1A82DA1A38522200D416E4 /* VideoFeedView.m */,
 				6C98A0511A3A188B001E12E2 /* LedSegmentControl.h */,
 				6C98A0521A3A188B001E12E2 /* LedSegmentControl.m */,
+				6CE152A11A7AEB5700716A52 /* ControlButton.h */,
+				6CE152A21A7AEB5700716A52 /* ControlButton.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 				6C378A851A3B41180043C56F /* DifferentialSteeringHelper.m in Sources */,
 				6C32E03D19FCFFEE00CF69D5 /* main.m in Sources */,
 				6C1A82E11A38544900D416E4 /* StreamHelper.m in Sources */,
+				6CE152A31A7AEB5700716A52 /* ControlButton.m in Sources */,
 				6C98A0531A3A188B001E12E2 /* LedSegmentControl.m in Sources */,
 				6C31B2431A082797008B936C /* CommunicationHelper.m in Sources */,
 				6C234A9219FEF0110083ACE4 /* MathHelpers.m in Sources */,
