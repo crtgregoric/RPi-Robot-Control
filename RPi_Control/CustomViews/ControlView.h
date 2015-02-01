@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, ControlViewType) {
 @end
 
 IB_DESIGNABLE
-@interface ControlView : UIView
+@interface ControlView : UIControl
 
 @property (nonatomic, weak) id <ControlViewDelegate> delegate;
 

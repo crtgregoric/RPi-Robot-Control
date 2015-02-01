@@ -27,16 +27,10 @@
 }
 
 - (void)awakeFromNib {
-    [self setup];
     [self setupUI];
 }
 
 #pragma mark - Setup methods
-
-- (void)setup {
-    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
-    [self addGestureRecognizer:panGesture];
-}
 
 - (void)setupUI {
     self.layer.borderWidth = self.shapeBorderWidth;
@@ -46,68 +40,68 @@
     self.layer.cornerRadius = [self viewRadius];
     
     [self addSubview:self.circleView];
+    self.circleView.userInteractionEnabled = NO;
 }
 
-#pragma mark - Action methods
+#pragma mark - UIControl overriden methods
 
-- (void)panGestureRecognized:(UIPanGestureRecognizer *)panGesture {
-    CGPoint panLocation = [panGesture locationInView:self];
+- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+    CGPoint panLocation = [touch locationInView:self];
     
-    if (panGesture.state == UIGestureRecognizerStateBegan) {
-        CGPoint center = self.circleView.center;
-        CGFloat dx = center.x - panLocation.x;
-        CGFloat dy = center.y - panLocation.y;
-        self.offsetVector = CGVectorMake(dx, dy);
-        
-        if ([self.delegate respondsToSelector:@selector(controlViewWillBeginChangingPosition:)]) {
-            [self.delegate controlViewWillBeginChangingPosition:self];
-        }
-        
-    } else if (panGesture.state == UIGestureRecognizerStateChanged) {
-        CGFloat x = panLocation.x + self.offsetVector.dx;
-        CGFloat y = panLocation.y + self.offsetVector.dy;
-        CGPoint newCenter = CGPointMake(x, y);
-        
-        CGPoint circleCenter = [self viewCenter];
-        CGFloat circleRadius = [self viewRadius];
-        
-        if (self.type == ControlViewTypeRobotPosition) {
-            if (![MathHelpers circleWithCenter:circleCenter andRadius:circleRadius containsPoint:newCenter]) {
-                newCenter = [MathHelpers coordinatesForPoint:newCenter onCircleWithCenter:circleCenter andRadius:circleRadius];
-                [self adjustOffsetVector];
-                
-            }
-            
-            [self repositionCircleViewToPosition:newCenter];
-            
-        } else if (self.type == ControlViewTypeCameraTilt) {
-            newCenter = CGPointMake(circleCenter.x, newCenter.y);
-            
-            if ([MathHelpers circleWithCenter:circleCenter andRadius:circleRadius containsPoint:newCenter]) {
-                [self repositionCircleViewToPosition:newCenter];
-                
-            } else {
-                [self adjustOffsetVector];
-                
-            }
-            
-        } else if (self.type == ControlViewTypeLedBrightness) {
-            newCenter = CGPointMake(newCenter.x, circleCenter.y);
-            if ([MathHelpers rect:self.bounds containsPoint:newCenter]) {
-                [self repositionCircleViewToPosition:newCenter];
-            }
-        }
-        
-    } else if (panGesture.state == UIGestureRecognizerStateEnded) {
-        if (self.type == ControlViewTypeRobotPosition) {
-            [UIView animateWithDuration:0.3 animations:^{
-                self.circleView.center = [self viewCenter];
-            }];
-        }
-        
-        if ([self.delegate respondsToSelector:@selector(controlViewDidEndChangigPosition:)]) {
-            [self.delegate controlViewDidEndChangigPosition:self];
-        }
+    CGPoint circleCenter = [self viewCenter];
+    CGFloat circleRadius = [self viewRadius];
+    
+    if (![MathHelpers circleWithCenter:circleCenter andRadius:circleRadius containsPoint:panLocation]) {
+        return NO;
+    }
+    
+    CGPoint center = self.circleView.center;
+    CGFloat dx = center.x - panLocation.x;
+    CGFloat dy = center.y - panLocation.y;
+    self.offsetVector = CGVectorMake(dx, dy);
+    
+    if ([self.delegate respondsToSelector:@selector(controlViewWillBeginChangingPosition:)]) {
+        [self.delegate controlViewWillBeginChangingPosition:self];
+    }
+
+    return YES;
+}
+
+- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+    CGPoint panLocation = [touch locationInView:self];
+
+    CGFloat x = panLocation.x + self.offsetVector.dx;
+    CGFloat y = panLocation.y + self.offsetVector.dy;
+    CGPoint newCenter = CGPointMake(x, y);
+    
+    CGPoint circleCenter = [self viewCenter];
+    CGFloat circleRadius = [self viewRadius];
+    
+    if (self.type == ControlViewTypeCameraTilt) {
+        newCenter = CGPointMake(circleCenter.x, newCenter.y);
+    } else if (self.type == ControlViewTypeLedBrightness) {
+        newCenter = CGPointMake(newCenter.x, circleCenter.y);
+    }
+
+    if (![MathHelpers circleWithCenter:circleCenter andRadius:circleRadius containsPoint:newCenter]) {
+        newCenter = [MathHelpers coordinatesForPoint:newCenter onCircleWithCenter:circleCenter andRadius:circleRadius];
+        [self adjustOffsetVector];
+    }
+    
+    [self repositionCircleViewToPosition:newCenter];
+
+    return YES;
+}
+
+- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+    if (self.type == ControlViewTypeRobotPosition) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.circleView.center = [self viewCenter];
+        }];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(controlViewDidEndChangigPosition:)]) {
+        [self.delegate controlViewDidEndChangigPosition:self];
     }
 }
 
@@ -128,7 +122,7 @@
 }
 
 - (CGFloat)viewRadius {
-    return self.frame.size.width < self.frame.size.height ? self.frame.size.width/2 : self.frame.size.height/2;
+    return self.frame.size.width > self.frame.size.height ? self.frame.size.width/2 : self.frame.size.height/2;
 }
 
 - (CGPoint)viewCenter {
