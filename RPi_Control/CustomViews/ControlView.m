@@ -107,8 +107,8 @@
 
 #pragma mark - Helper methods
 
-- (void)updateCircleViewPositionConditional:(BOOL)conditional animated:(BOOL)animated {
-    if (!self.didUpdateCircleViewPosition || !conditional) {
+- (void)updateCircleViewPosition:(BOOL)update animated:(BOOL)animated {
+    if (!self.didUpdateCircleViewPosition || !update) {
         CGPoint viewCenter = [self viewCenter];
         viewCenter.x = self.bounds.size.width;
         

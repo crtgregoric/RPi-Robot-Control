@@ -67,7 +67,7 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    [self.brightnessControlView updateCircleViewPositionConditional:YES animated:NO];
+    [self.brightnessControlView updateCircleViewPosition:YES animated:NO];
 }
 
 #pragma mark - Button actions
@@ -86,21 +86,21 @@
     [self.view layoutIfNeeded];
 }
 
-- (void)setBrightnessControlViewVisible:(BOOL)visible {
+- (void)showBrightnessControlView:(BOOL)show {
     BOOL updateConstraint = NO;
     
-    if (self.brightnessControlView.visible && !visible) {
+    if (self.brightnessControlView.visible && !show) {
         updateConstraint = YES;
         self.brightnessControlViewBottomConstraint.constant = -self.brightnessControlView.frame.size.height;
         
-    } else if (!self.brightnessControlView.visible && visible) {
-        [self.brightnessControlView updateCircleViewPositionConditional:NO animated:NO];
+    } else if (!self.brightnessControlView.visible && show) {
+        [self.brightnessControlView updateCircleViewPosition:NO animated:NO];
         updateConstraint = YES;
         self.brightnessControlViewBottomConstraint.constant = 20.0f;
     }
     
     if (updateConstraint) {
-        self.brightnessControlView.visible = visible;
+        self.brightnessControlView.visible = show;
         [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             [self.view layoutIfNeeded];
         } completion:nil];
@@ -153,7 +153,7 @@
     }
     
     [self.ledSegment setSelectedSegmentIndex:0];
-    [self setBrightnessControlViewVisible:NO];
+    [self showBrightnessControlView:NO];
 }
 
 - (void)communicationHelperDidDisconnectFromHost:(CommunicationHelper *)helper {
@@ -161,7 +161,7 @@
     self.statusLabel.backgroundColor = [UIColor redColor];
     
     [self.ledSegment setSelectedSegmentIndex:0];
-    [self setBrightnessControlViewVisible:NO];
+    [self showBrightnessControlView:NO];
 
     if (self.streamHelper) {
         [self.streamHelper stop];
@@ -229,16 +229,16 @@
 - (IBAction)ledSegmentValueChanged:(UISegmentedControl *)sender {
     NSString *message;
     if (sender.selectedSegmentIndex == 0) {
-        [self setBrightnessControlViewVisible:NO];
+        [self showBrightnessControlView:NO];
         message = [MessageComposer allLedOffMessageWithCommandType:self.brightnessControlView.type];
         NSLog(@"Segment sent: all led off");
 
     } else {
         if (self.brightnessControlView.visible) {
-            [self.brightnessControlView updateCircleViewPositionConditional:NO animated:YES];
+            [self.brightnessControlView updateCircleViewPosition:NO animated:NO];
         }
         
-        [self setBrightnessControlViewVisible:YES];
+        [self showBrightnessControlView:YES];
         message = [MessageComposer messageWithCommandType:self.brightnessControlView.type ledOnForState:sender.selectedSegmentIndex];
         NSLog(@"Segment sent: led state: %d", sender.selectedSegmentIndex);
     }
