@@ -37,7 +37,7 @@
     self.layer.borderColor = self.shapeBorderColor.CGColor;
     self.layer.backgroundColor = self.shapeBackgroundColor.CGColor;
     
-    self.layer.cornerRadius = [self viewRadius];
+    self.layer.cornerRadius = self.shapeRadius;
     
     [self addSubview:self.circleView];
     self.circleView.userInteractionEnabled = NO;
@@ -125,6 +125,10 @@
     return self.frame.size.width > self.frame.size.height ? self.frame.size.width/2 : self.frame.size.height/2;
 }
 
+- (CGFloat)cornerRadius {
+    return self.frame.size.width < self.frame.size.height ? self.frame.size.width/2 : self.frame.size.height/2;
+}
+
 - (CGPoint)viewCenter {
     return CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
 }
@@ -170,7 +174,7 @@
 #pragma mark - Getter methods
 
 - (CGFloat)shapeRadius {
-    return [self viewRadius];
+    return [self cornerRadius];
 }
 
 - (NSString *)typeString {

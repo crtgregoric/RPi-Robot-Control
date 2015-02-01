@@ -30,7 +30,6 @@
 @property (weak, nonatomic) IBOutlet ControlView *tiltControlView;
 @property (weak, nonatomic) IBOutlet ControlView *brightnessControlView;
 
-@property (weak, nonatomic) IBOutlet UIView *brightnessBackgroundView;
 @property (nonatomic) BOOL brightnessControlVisible;
 
 @property (weak, nonatomic) IBOutlet LedSegmentControl *ledSegment;
@@ -39,7 +38,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *brightnessBackgroundBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *brightnessControlViewBottomConstraint;
 
 @end
 
@@ -80,12 +79,8 @@
 #pragma mark - Helper methods
 
 - (void)setupUI {
-    self.brightnessBackgroundView.backgroundColor = [UIColor colorWithWhite:0.50 alpha:0.25];
-    self.brightnessBackgroundView.layer.borderWidth = 1.0f;
-    self.brightnessBackgroundView.layer.borderColor = [UIColor blackColor].CGColor;
-    self.brightnessBackgroundView.layer.cornerRadius = self.brightnessBackgroundView.frame.size.height/2;
-    self.brightnessBackgroundBottomConstraint.constant = -self.brightnessBackgroundView.frame.size.height;
-    
+    self.brightnessControlViewBottomConstraint.constant = -self.brightnessControlView.frame.size.height;
+
     self.activityIndicator.alpha = 0.0f;
     
     [self.view layoutIfNeeded];
@@ -96,12 +91,12 @@
     
     if (self.brightnessControlVisible && !visible) {
         updateConstraint = YES;
-        self.brightnessBackgroundBottomConstraint.constant = -self.brightnessBackgroundView.frame.size.height;
+        self.brightnessControlViewBottomConstraint.constant = -self.brightnessControlView.frame.size.height;
         
     } else if (!self.brightnessControlVisible && visible) {
         [self.brightnessControlView updateCircleViewPositionConditional:NO animated:NO];
         updateConstraint = YES;
-        self.brightnessBackgroundBottomConstraint.constant = 20.0f;
+        self.brightnessControlViewBottomConstraint.constant = 20.0f;
     }
     
     if (updateConstraint) {
