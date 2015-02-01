@@ -33,6 +33,7 @@ IB_DESIGNABLE
 
 @property (nonatomic) ControlViewType type;
 @property (nonatomic, readonly) NSString *typeString;
+@property (nonatomic) BOOL visible;
 
 @property (nonatomic) IBInspectable CGFloat shapeBorderWidth;
 @property (nonatomic, strong) IBInspectable UIColor *shapeBorderColor;

@@ -30,8 +30,6 @@
 @property (weak, nonatomic) IBOutlet ControlView *tiltControlView;
 @property (weak, nonatomic) IBOutlet ControlView *brightnessControlView;
 
-@property (nonatomic) BOOL brightnessControlVisible;
-
 @property (weak, nonatomic) IBOutlet LedSegmentControl *ledSegment;
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
@@ -54,12 +52,15 @@
     
     self.positionControlView.type = ControlViewTypeRobotPosition;
     self.positionControlView.delegate = self;
+    self.positionControlView.visible = YES;
 
     self.tiltControlView.type = ControlViewTypeCameraTilt;
     self.tiltControlView.delegate = self;
+    self.tiltControlView.visible = YES;
     
     self.brightnessControlView.type = ControlViewTypeLedBrightness;
     self.brightnessControlView.delegate = self;
+    self.brightnessControlView.visible = NO;
 
     [self setupUI];
 }
@@ -79,9 +80,8 @@
 #pragma mark - Helper methods
 
 - (void)setupUI {
-    self.brightnessControlViewBottomConstraint.constant = -self.brightnessControlView.frame.size.height;
-
     self.activityIndicator.alpha = 0.0f;
+    self.brightnessControlViewBottomConstraint.constant = -self.brightnessControlView.frame.size.height;
     
     [self.view layoutIfNeeded];
 }
@@ -89,22 +89,52 @@
 - (void)setBrightnessControlViewVisible:(BOOL)visible {
     BOOL updateConstraint = NO;
     
-    if (self.brightnessControlVisible && !visible) {
+    if (self.brightnessControlView.visible && !visible) {
         updateConstraint = YES;
         self.brightnessControlViewBottomConstraint.constant = -self.brightnessControlView.frame.size.height;
         
-    } else if (!self.brightnessControlVisible && visible) {
+    } else if (!self.brightnessControlView.visible && visible) {
         [self.brightnessControlView updateCircleViewPositionConditional:NO animated:NO];
         updateConstraint = YES;
         self.brightnessControlViewBottomConstraint.constant = 20.0f;
     }
     
     if (updateConstraint) {
-        self.brightnessControlVisible = visible;
+        self.brightnessControlView.visible = visible;
         [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             [self.view layoutIfNeeded];
         } completion:nil];
     }
+}
+
+- (void)showActivityIndicator {
+    [self.activityIndicator startAnimating];
+    [UIView animateWithDuration:0.5f animations:^{
+        self.activityIndicator.alpha = 1.0f;
+    }];
+}
+
+- (void)hideActivityIndicator {
+    if (self.activityIndicator.isAnimating) {
+        [UIView animateWithDuration:0.5f animations:^{
+            self.activityIndicator.alpha = 0.0f;
+            
+        } completion:^(BOOL finished) {
+            [self.activityIndicator stopAnimating];
+        }];
+    }
+}
+
+- (void)showAnimationView {
+    [UIView animateWithDuration:0.5f animations:^{
+        self.streamFeedAnimationView.alpha = 1.0f;
+    }];
+}
+
+- (void)hideAnimationView {
+    [UIView animateWithDuration:0.5f animations:^{
+        self.streamFeedAnimationView.alpha = 0.0f;
+    }];
 }
 
 #pragma mark - CommunicationHelperDelegate
@@ -119,11 +149,7 @@
     
     if (!self.streamHelper) {
         self.streamHelper = [[StreamHelper alloc] initWithVideoFeedView:self.streamFeedView delegate:self];
-
-        [self.activityIndicator startAnimating];
-        [UIView animateWithDuration:0.5f animations:^{
-            self.activityIndicator.alpha = 1.0f;
-        }];
+        [self showActivityIndicator];
     }
     
     [self.ledSegment setSelectedSegmentIndex:0];
@@ -137,25 +163,12 @@
     [self.ledSegment setSelectedSegmentIndex:0];
     [self setBrightnessControlViewVisible:NO];
 
-    NSTimeInterval duration = 0.5f;
-    
     if (self.streamHelper) {
         [self.streamHelper stop];
         self.streamHelper = nil;
-        
-        [UIView animateWithDuration:duration animations:^{
-            self.streamFeedAnimationView.alpha = 1.0f;
-        }];
+        [self showAnimationView];
     }
-    
-    if (self.activityIndicator.isAnimating) {
-        [UIView animateWithDuration:duration animations:^{
-            self.activityIndicator.alpha = 0.0f;
-            
-        } completion:^(BOOL finished) {
-            [self.activityIndicator stopAnimating];
-        }];
-    }
+    [self hideActivityIndicator];
 }
 
 - (void)communicationHelper:(CommunicationHelper *)helper encounteredAnError:(NSError *)error {
@@ -205,17 +218,10 @@
 #pragma mark - StreamHelperDelegate
 
 - (void)streamerHelperDidStartDisplayingVideo:(StreamHelper *)streamerHelper {
-    if (self.activityIndicator.isAnimating) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.5f animations:^{
-                self.activityIndicator.alpha = 0.0f;
-                self.streamFeedAnimationView.alpha = 0.0f;
-                
-            } completion:^(BOOL finished) {
-                [self.activityIndicator stopAnimating];
-            }];
-        });
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self hideActivityIndicator];
+        [self hideAnimationView];
+    });
 }
 
 #pragma mark - Segment control methods
@@ -228,7 +234,7 @@
         NSLog(@"Segment sent: all led off");
 
     } else {
-        if (self.brightnessControlVisible) {
+        if (self.brightnessControlView.visible) {
             [self.brightnessControlView updateCircleViewPositionConditional:NO animated:YES];
         }
         
