@@ -3,7 +3,7 @@
 //  RPi_Control
 //
 //  Created by Crt Gregoric on 27. 10. 14.
-//  Copyright (c) 2014 akro-in. All rights reserved.
+//  Copyright (c) 2014 crtgregoric. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
