@@ -174,7 +174,10 @@
 #pragma mark - Getter methods
 
 - (CGFloat)shapeRadius {
-    return [self cornerRadius];
+    if (!_shapeRadius) {
+        _shapeRadius = [self cornerRadius];
+    }
+    return _shapeRadius;
 }
 
 - (NSString *)typeString {

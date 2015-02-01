@@ -25,7 +25,6 @@
 		6C41497C1A7EDE5D00963653 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C41497B1A7EDE5D00963653 /* AppDelegate.m */; };
 		6C98A0531A3A188B001E12E2 /* LedSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C98A0521A3A188B001E12E2 /* LedSegmentControl.m */; };
 		6C98A0561A3A4ACA001E12E2 /* MessageComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C98A0551A3A4ACA001E12E2 /* MessageComposer.m */; };
-		6CE152A31A7AEB5700716A52 /* ControlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE152A21A7AEB5700716A52 /* ControlButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -214,8 +213,6 @@
 				6C1A82DA1A38522200D416E4 /* VideoFeedView.m */,
 				6C98A0511A3A188B001E12E2 /* LedSegmentControl.h */,
 				6C98A0521A3A188B001E12E2 /* LedSegmentControl.m */,
-				6CE152A11A7AEB5700716A52 /* ControlButton.h */,
-				6CE152A21A7AEB5700716A52 /* ControlButton.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -337,7 +334,6 @@
 				6C41497C1A7EDE5D00963653 /* AppDelegate.m in Sources */,
 				6C32E03D19FCFFEE00CF69D5 /* main.m in Sources */,
 				6C1A82E11A38544900D416E4 /* StreamHelper.m in Sources */,
-				6CE152A31A7AEB5700716A52 /* ControlButton.m in Sources */,
 				6C98A0531A3A188B001E12E2 /* LedSegmentControl.m in Sources */,
 				6C31B2431A082797008B936C /* CommunicationHelper.m in Sources */,
 				6C234A9219FEF0110083ACE4 /* MathHelpers.m in Sources */,
